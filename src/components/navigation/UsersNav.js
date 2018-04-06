@@ -10,7 +10,7 @@ const link = {
   // color: 'white',
 }
 
-class UsersNavBar extends Component {
+class UsersNav extends Component {
   render() {
     return (
       <div>
@@ -48,4 +48,4 @@ class UsersNavBar extends Component {
   }
 }
 
-export default UsersNavBar
+export default UsersNav
