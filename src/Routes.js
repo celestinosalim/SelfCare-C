@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import Navigation from './components/navigation/Navigation';
 import LandingPage from './components/shared/LandingPage';
 import HealthResources from './components/shared/HealthResources';
 import About from './container/About';
@@ -14,6 +15,7 @@ class Routes extends Component {
   render() {
     return (
       <div>
+        <Navigation />
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/about" component={About} />
