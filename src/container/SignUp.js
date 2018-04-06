@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
-import TextFieldGroup from '../../common/TextFieldGroup';
+import TextFieldGroup from '../components/common/formFields';
 
 class Signup extends Component {
 
