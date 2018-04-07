@@ -1,15 +1,6 @@
 import { API_URL } from './apiUrl'
 import * from './actionTypes'
 
-
-export const REQUEST_MEDICATIONS = "REQUEST_BEHAVIORS"
-export const ADD_MEDICATION = "REQUEST_BEHAVIORS"
-
-
-
-export const REQUEST_BEHAVIORS = "REQUEST_BEHAVIORS"
-export const CREATE_BEHAVIORS = "CREATE_BEHAVIORS"
-
 export function fetchMedications(){
   return (dispatch) => {
     dispatch({
