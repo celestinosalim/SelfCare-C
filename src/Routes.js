@@ -7,6 +7,7 @@ import HealthResources from './components/shared/HealthResources';
 import About from './container/About';
 import Login from './container/Login';
 import Signup from './container/SignUp';
+import UserProfile from './components/users/UserProfile';
 import Footer from './components/shared/Footer';
 
 import './components/App.css';
@@ -22,6 +23,7 @@ class Routes extends Component {
           <Route exact path="/health_resources" component={HealthResources} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/user_profile" component={UserProfile} />
         </Switch>
         <Footer />
       </div>
