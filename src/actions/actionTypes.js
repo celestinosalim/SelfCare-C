@@ -11,3 +11,10 @@ export const LOGOUT = "LOGOUT"
 
 
 //users
+
+
+//Users Attributes
+export const REQUEST_MEDICATIONS = "REQUEST_BEHAVIORS"
+export const ADD_MEDICATION = "REQUEST_BEHAVIORS"
+export const REQUEST_BEHAVIORS = "REQUEST_BEHAVIORS"
+export const CREATE_BEHAVIORS = "CREATE_BEHAVIORS"
