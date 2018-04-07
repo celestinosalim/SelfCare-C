@@ -1,17 +1,19 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
+import AddMedication from '../../container/addAttrButtons'
 
 const Medications = ({user}) => {
+
   return (
     <div className="UserMedications">
       <div className="AttrTitle">
         <h3>Medication</h3>
       </div>
       <div className="AttrNew">
-        <Button>Add New Medication</Button>
+        <AddMedication />
       </div>
       {user.medications.map(meds =>
-        <div className='AttrInfo'>
+        <div className='AttrInfo' key={meds.id}>
           <h4>Medication Name: {meds.name}</h4>
           <p>Dosage: {meds.dose}</p>
           <p>Prescribed By: {meds.prescribed}</p>

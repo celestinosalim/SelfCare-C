@@ -11,7 +11,7 @@ const Insurances = ({user}) => {
         <Button>Add Insurance</Button>
       </div>
       {user.insurances.map(insure =>
-        <div className='AttrInfo'>
+        <div className='AttrInfo' key={insure.id}>
           <h4>Insurance Name: {insure.name}</h4>
           <p>Address: {insure.address}</p>
           <p>Phone: {insure.phone}</p>

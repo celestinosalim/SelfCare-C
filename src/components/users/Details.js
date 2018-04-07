@@ -6,7 +6,7 @@ const Details = ({user}) => {
       <div className="AttrTitle">
         <h1>User Name</h1>
       </div>
-      <div className='AttrInfo'>
+      <div className='AttrInfo' key={user.id}>
         <p>Name: {user.name}</p>
         <p>Email: {user.email}</p>
       </div>

@@ -17,7 +17,7 @@ const Providers = ({user}) => {
         id="controlled-tab-example"
       >
       {user.providers.map(provider =>
-        <Tab eventKey={1} title="doctor.category">
+        <Tab eventKey={1} title="doctor.category" key={provider.id}>
           <div className="DeptTitle">
             <h4>provider.department</h4>
             <h4>{provider.department}</h4>
