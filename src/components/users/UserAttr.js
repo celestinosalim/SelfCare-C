@@ -9,7 +9,7 @@ const UserAttr = (props) => {
   return (
     <div className="UserInfo">
     {props.users.map(user =>
-      <div className="UserAttributes">
+      <div className="UserAttributes" key={user.id}>
         <Details user={user}/>
         <Medications user={user}/>
         <Insurances user={user}/>
