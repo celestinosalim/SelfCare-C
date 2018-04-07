@@ -1,9 +1,22 @@
 import React, {Component} from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
+import { API_URL } from '../../actions/apiUrl'
 
 import UserAttr from './UserAttr';
 
 class UserProfile extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      users: []
+    }
+  }
+
+  componentDidMount() {
+    fetch(`${API_URL}/users`)
+     .then(res => res.json())
+     .then(users => this.setState({ users }))
+  }
 
   render() {
     return(
