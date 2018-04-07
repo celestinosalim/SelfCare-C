@@ -30,15 +30,33 @@ export function logout(){
   }
 }
 
+export const getToken = () => {
+
+}
+
+export const findUser = () => {
+
+}
+
+export const authUser = () => {
+  // if user cant be found send error
+  // if user is found let user log in
+}
+
+export const getAuthenticatedUser = () => {
+
+}
+
+
 ///// DEFINE HOW TO AUTHENTICATE A USER /////
 //initialize a connection
-//get a temporary code - get it from KNOCK GEM User_token
+//get a temporary code
 //fetch that code and turn it into a TOKEN by making a POST request to the url
 //get that TOKEN and make a GET request to the API to get the User's info (credentials)
 //Now we have the user's info (credentials); pass that info (credentials) to the client to make a request to server, the server will know which user is making the requests.
 //Use JWT to encode passed info (credentials)
 
-//site sends the temp code to endpoint in API. create that enpoint by creating a controller - We got one through knock gem.
+//site sends the temp code to endpoint in API. create that endpoint by creating a controller - We got one through knock gem.
 //Controller uses authenticator class/method to get user's info (credentials), stores it in the database, and redirects to client app as JWT encoded info (credentials)
 //create endpoint (the route that points to the controller - KNOCK GEM User_token route
 
