@@ -1,4 +1,4 @@
-import * from './actionTypes'
+import * as types from '../actions/actionTypes';
 
 const initialState = {
   isAuthenticated: false,
@@ -9,26 +9,26 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case AUTH_REQUEST:
+    case types.AUTH_REQUEST:
       return {
         ...state,
         isAuthenticated: false,
       };
-    case AUTH_ERROR:
+    case types.AUTH_ERROR:
       return {
         isAuthenticated: false,
         currentUser: {}, //user can't be found
         token: null, //token wasn't confirmed;
         errors: action.errors || [] //show the errors
       };
-    case AUTH_SUCCESS:
+    case types.AUTH_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
         currentUser: action.user, //user is found
         token: action.token //token associated with user is confirmed
       };
-    case LOGOUT:
+    case types.LOGOUT:
       return {
         ...state,
         isAuthenticated: false,

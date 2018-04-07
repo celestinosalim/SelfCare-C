@@ -1,20 +1,21 @@
-import * from './actionTypes'
+import * as types from '../actions/actionTypes';
+import initialState from './initialState';
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_MEDICATIONS:
+    case types.REQUEST_MEDICATIONS:
       return {
 
       };
-    case ADD_MEDICATION:
+    case types.ADD_MEDICATION:
       return {
 
       };
-    case REQUEST_BEHAVIORS:
+    case types.REQUEST_BEHAVIORS:
       return {
 
       };
-    case CREATE_BEHAVIORS:
+    case types.CREATE_BEHAVIORS:
       return {
 
       };
