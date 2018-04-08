@@ -47,6 +47,21 @@ export const getAuthenticatedUser = () => {
 
 }
 
+export function showUser(){
+  return (dispatch) => {
+    dispatch({
+      type: types.REQUEST_USER
+    });
+    return fetch(`${API_URL}/users`)
+     .then(res => res.json())
+     .then(users => dispatch({
+       type: types.SHOW_USER,
+       users
+     }))
+
+  }
+}
+
 
 ///// DEFINE HOW TO AUTHENTICATE A USER /////
 //initialize a connection
