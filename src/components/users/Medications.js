@@ -1,28 +1,46 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
-import AddMedication from '../../container/addAttrButtons'
+import { Button, Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import AddMedication from '../../container/addMedication'
 
-const Medications = ({user}) => {
-
+const Medications = ({user}) =>  {
   return (
     <div className="UserMedications">
       <div className="AttrTitle">
         <h3>Medication</h3>
       </div>
       <div className="AttrNew">
-        <AddMedication />
+        <span>add new medication button</span>
       </div>
-      {user.medications.map(meds =>
-        <div className='AttrInfo' key={meds.id}>
-          <h4>Medication Name: {meds.name}</h4>
-          <p>Dosage: {meds.dose}</p>
-          <p>Prescribed By: {meds.prescribed}</p>
-          <p>Notes: {meds.notes}</p>
-          <Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button>
-        </div>
-      )}
+      <Table striped bordered condensed hover>
+        <thead>
+          <tr>
+            <th>Medication Name</th>
+            <th>Dose</th>
+            <th>Prescribed By</th>
+            <th>Notes</th>
+            <th>Edit / Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        {user.medications.map(medication =>
+          <tr className='AttrInfo' key={medication.id}>
+            <td>{medication.name}</td>
+            <td>{medication.dose}</td>
+            <td>{medication.prescribed}</td>
+            <td>{medication.notes}</td>
+            <Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button>
+          </tr>
+        )}
+        </tbody>
+      </Table>
     </div>
   )
 };
 
-export default Medications;
+function mapStatesToProps({ medications }) {
+  return { medications }
+}
+
+export default connect(mapStatesToProps)(Medications);
