@@ -10,9 +10,6 @@ const Medications = ({user}) =>  {
       <div className="AttrTitle">
         <h3>Medication</h3>
       </div>
-      <div className="AttrNew">
-        <span>add new medication button</span>
-      </div>
       <Table striped bordered condensed hover>
         <thead>
           <tr>
@@ -30,9 +27,10 @@ const Medications = ({user}) =>  {
             <td>{medication.dose}</td>
             <td>{medication.prescribed}</td>
             <td>{medication.notes}</td>
-            <Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button>
+            <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>
           </tr>
         )}
+        <tr><AddMedication /></tr>
         </tbody>
       </Table>
     </div>
