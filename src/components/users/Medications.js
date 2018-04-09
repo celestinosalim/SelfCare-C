@@ -30,9 +30,9 @@ const Medications = ({user}) =>  {
             <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>
           </tr>
         )}
-        <tr><AddMedication /></tr>
         </tbody>
       </Table>
+      <AddMedication />
     </div>
   )
 };
