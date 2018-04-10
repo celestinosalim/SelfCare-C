@@ -17,7 +17,6 @@ const addMedication = medication => {
 }
 
 export const updateMedicationFormData = medicationFormData => {
-  debugger;
   return {
     type: types.UPDATE_MEDICATION,
     medicationFormData
