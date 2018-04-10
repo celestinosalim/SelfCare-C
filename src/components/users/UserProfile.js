@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
 
 import UserDetails from '../../container/users/UserDetails'
@@ -25,6 +25,3 @@ const UserProfile = () => {
 }
 
 export default UserProfile;
-
-// import UserAttr from './UserAttr';
-// <UserAttr users={this.state.users}/>
