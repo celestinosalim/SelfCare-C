@@ -1,37 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
-import { API_URL } from '../../actions/apiUrl'
 
-import UserAttr from './UserAttr';
+import UserDetails from '../../container/users/UserDetails'
+import UserMeds from '../../container/users/UserMeds'
+import UserInsurance from '../../container/users/UserInsurance'
+import UserProviders from '../../container/users/UserProviders'
 
-class UserProfile extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      users: []
-    }
-  }
-
-  componentDidMount() {
-    fetch(`${API_URL}/users`)
-     .then(res => res.json())
-     .then(users => this.setState({ users }))
-  }
-
-  render() {
-    return(
-      <Grid>
-        <Col md={4}>
-          <Image src="/thumbnail.png" thumbnail />
-          <Button bsStyle="link">Add Image</Button> | <Button bsStyle="link">Change Image</Button>
-          <p>Add an image that gives you joy</p>
-        </Col>
-        <Col md={8}>
-          <UserAttr users={this.state.users}/>
-        </Col>
-      </Grid>
-    );
-  };
+const UserProfile = () => {
+  return(
+    <Grid>
+      <Col md={4}>
+        <Image src="/thumbnail.png" thumbnail />
+        <Button bsStyle="link">Add Image</Button> | <Button bsStyle="link">Change Image</Button>
+        <p>Add an image that gives you joy</p>
+      </Col>
+      <Col md={8}>
+        <UserDetails />
+        <UserMeds />
+        <UserInsurance />
+        <UserProviders />
+      </Col>
+    </Grid>
+  );
 }
 
 export default UserProfile;
+
+// import UserAttr from './UserAttr';
+// <UserAttr users={this.state.users}/>
