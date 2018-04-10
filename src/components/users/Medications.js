@@ -7,6 +7,7 @@ const Medications = ({medication}) =>  {
     <tr className='AttrInfo' key={medication.id}>
       <td>{medication.name}</td>
       <td>{medication.dose}</td>
+      <td>{medication.first_dose}</td>
       <td>{medication.prescribed}</td>
       <td>{medication.notes}</td>
       <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>

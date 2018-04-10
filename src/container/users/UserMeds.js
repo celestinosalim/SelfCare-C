@@ -24,6 +24,7 @@ class UserMeds extends Component {
               <tr>
                 <th>Medication Name</th>
                 <th>Dose</th>
+                <th>Date of First Dose</th>
                 <th>Prescribed By</th>
                 <th>Notes</th>
                 <th>Edit / Delete</th>
