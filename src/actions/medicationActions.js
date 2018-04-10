@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
@@ -17,6 +16,13 @@ const addMedication = medication => {
   }
 }
 
+export const updateMedicationFormData = medicationFormData => {
+  return {
+    type: types.UPDATE_MEDICATION,
+    medicationFormData
+  }
+}
+
 // Async Actions
 export const getMedications = () => {
   return dispatch => {
@@ -27,7 +33,7 @@ export const getMedications = () => {
   };
 }
 
-export const createMedications = medication => {
+export const createMedication = medication => {
   return dispatch => {
     return fetch(`${API_URL}/medications`, {
       method: "POST",
