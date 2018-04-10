@@ -14,6 +14,8 @@ export const LOGOUT = "LOGOUT"
 export const REQUEST_USER = "REQUEST_USER"
 export const SHOW_USER = "SHOW_USER"
 
+export const RESET_FORM = "RESET_FORM"
+
 //Users Attributes
 export const REQUEST_MEDICATIONS = "REQUEST_MEDICATIONS"
 export const ADD_MEDICATION = "ADD_MEDICATION"
