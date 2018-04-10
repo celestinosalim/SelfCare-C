@@ -16,6 +16,7 @@ const addMedication = medication => {
   }
 }
 
+// Action Creators - FORM
 export const updateMedicationFormData = medicationFormData => {
   return {
     type: types.UPDATE_MEDICATION,
