@@ -16,10 +16,17 @@ const addProvider = provider => {
   }
 }
 
+// Action Creators - FORM
 export const updateProviderFormData = providerFormData => {
   return {
     type: types.UPDATE_PROVIDER,
     providerFormData
+  }
+}
+
+export const resetProviderForm = () => {
+  return {
+    type: types.RESET_FORM
   }
 }
 
@@ -28,7 +35,9 @@ export const getProviders = () => {
   return dispatch => {
     return fetch(`${API_URL}/providers`)
       .then(response => response.json())
-      .then(providers => dispatch(setProviders(providers)))
+      .then(providers => {
+        dispatch(setProviders(providers))
+      })
       .catch(error => console.log(error));
   };
 }
@@ -43,7 +52,10 @@ export const createProvider = provider => {
       body: JSON.stringify({provider: provider})
     })
       .then(response => response.json())
-      .then(provider => dispatch(addProvider(provider)))
+      .then(provider => {
+        dispatch(addProvider(provider))
+        dispatch(resetProviderForm())
+      })
       .catch(error => console.log(error))
   };
 }
