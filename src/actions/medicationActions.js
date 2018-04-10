@@ -17,9 +17,16 @@ const addMedication = medication => {
 }
 
 export const updateMedicationFormData = medicationFormData => {
+  debugger;
   return {
     type: types.UPDATE_MEDICATION,
     medicationFormData
+  }
+}
+
+export const resetMedicationForm = () => {
+  return {
+    type: types.RESET_FORM
   }
 }
 
@@ -28,7 +35,7 @@ export const getMedications = () => {
   return dispatch => {
     return fetch(`${API_URL}/medications`)
       .then(response => response.json())
-      .then(medications => dispatch(setMedications(medications)))
+      .then(medications => dispatch(setMedications(medications))) //returns collection of medications
       .catch(error => console.log(error));
   };
 }
@@ -43,7 +50,10 @@ export const createMedication = medication => {
       body: JSON.stringify({medication: medication})
     })
       .then(response => response.json())
-      .then(medication => dispatch(addMedication(medication)))
+      .then(medication => {
+        dispatch(addMedication(medication))
+        dispatch(resetMedicationForm())
+      })
       .catch(error => console.log(error))
   };
 }
