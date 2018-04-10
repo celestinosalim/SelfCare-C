@@ -6,7 +6,7 @@ import { updateMedicationFormData, createMedication } from '../../actions/medica
 
 class MedicationForm extends Component {
 
-  handleChange(e) {
+  handleChange = (e) => {
     const { name, value } = e.target
     const currentMedicationFormData = Object.assign({}, this.props.medicationFormData, {
       [name]: value
@@ -14,15 +14,14 @@ class MedicationForm extends Component {
     this.props.updateMedicationFormData(currentMedicationFormData)
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     //call action.addMedications to tell reducer to add the new medication
     e.preventDefault()
-    this.props.store.createMedication(this.props.medicationFormData)
+    this.props.createMedication(this.props.medicationFormData)
   }
 
   render() {
-
-    const { name, dose, prescribed, notes } = this.props.medicationFormData;
+    const { name, dose, first_dose, prescribed, notes } = this.props.medicationFormData;
 
     return (
       <div className="formContainer">
@@ -47,10 +46,19 @@ class MedicationForm extends Component {
             onChange={this.handleChange}
            />
           <TextFieldGroup
+            label="Date of First Dose:"
+            id="formControlsFirstDose"
+            type="text"
+            name="first_dose"
+            placeholder="First Dose"
+            value={first_dose}
+            onChange={this.handleChange}
+           />
+          <TextFieldGroup
             label="Prescriber:"
             id="formControlsPrescriber"
             type="text"
-            name="prescriber"
+            name="prescribed"
             placeholder="prescriber"
             value={prescribed}
             onChange={this.handleChange}
