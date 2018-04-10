@@ -6,7 +6,7 @@ import { updateInsuranceFormData, createInsurance} from '../../actions/insurance
 
 class InsuranceForm extends Component {
 
-  handleChange(e) {
+  handleChange = (e) => {
     const { name, value } = e.target
     const currentInsuranceFormData = Object.assign({}, this.props.insuranceFormData, {
       [name]: value
@@ -14,10 +14,9 @@ class InsuranceForm extends Component {
     this.props.updateInsuranceFormData(currentInsuranceFormData)
   }
 
-  handleSubmit(e) {
-    //call action.addMedications to tell reducer to add the new medication
+  handleSubmit = (e) => {
     e.preventDefault()
-    this.props.store.createInsurance(this.props.insuranceFormData)
+    this.props.createInsurance(this.props.insuranceFormData)
   }
 
   render() {
