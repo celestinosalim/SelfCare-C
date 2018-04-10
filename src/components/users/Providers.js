@@ -1,9 +1,9 @@
 import React from 'react';
 import { Tabs, Tab, Button } from 'react-bootstrap';
 
-const Providers = ({providers}) => {
+const Providers = ({provider}) => {
 
-  const renderProviders = providers.map(provider =>
+  return (
     <Tabs
       // activeKey={this.state.key}
       // onSelect={this.handleSelect}
@@ -24,12 +24,6 @@ const Providers = ({providers}) => {
         </div>
       </Tab>
     </Tabs>
-  )
-
-  return (
-    <div className="AttrList">
-      {renderProviders}
-    </div>
   );
 }
 
