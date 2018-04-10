@@ -5,7 +5,7 @@ import * as types from './actionTypes'
 const setMedications = medications => {
   return {
     type: types.REQUEST_MEDICATIONS,
-    medications
+    medications  //collection of medications
   }
 }
 
@@ -35,7 +35,9 @@ export const getMedications = () => {
   return dispatch => {
     return fetch(`${API_URL}/medications`)
       .then(response => response.json())
-      .then(medications => dispatch(setMedications(medications))) //returns collection of medications
+      .then(medications => {
+        dispatch(setMedications(medications))
+      }) //returns collection of medications
       .catch(error => console.log(error));
   };
 }
