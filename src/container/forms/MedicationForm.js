@@ -15,7 +15,6 @@ class MedicationForm extends Component {
   }
 
   handleSubmit = (e) => {
-    //call action.addMedications to tell reducer to add the new medication
     e.preventDefault()
     this.props.createMedication(this.props.medicationFormData)
   }
