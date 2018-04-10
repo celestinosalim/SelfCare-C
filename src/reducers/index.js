@@ -2,8 +2,9 @@ import { combineReducers } from 'redux';
 import authReducers from './authReducers';
 import medicationsReducers from './medicationsReducers';
 import medicationFormDataReducers from './medicationFormDataReducers';
+import insurancesReducers from './insurancesReducers';
+import insuranceFormDataReducers from './insuranceFormDataReducers';
 
-// import insuranceReducers from './insuranceReducers';
 // import providerReducers from './providerReducers';
 // import behaviorReducers from './behaviorReducers';
 // import conditionReducers from './conditionReducers';
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   auth: authReducers,
   medications: medicationsReducers,
   medicationFormData: medicationFormDataReducers,
-  // insurance: insuranceReducers,
+  insurances: insurancesReducers,
+  insuranceFormData: insuranceFormDataReducers,
   // provider: providerReducers,
   // behavior: behaviorReducers,
   // condition: conditionReducers
