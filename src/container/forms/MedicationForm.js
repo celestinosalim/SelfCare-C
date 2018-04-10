@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import TextFieldGroup from '../components/common/formFields';
+import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
-import { updateMedicationFormData, createMedication } from '../actions/medicationActions'
+import { updateMedicationFormData, createMedication } from '../../actions/medicationActions'
 
 class MedicationForm extends Component {
 
