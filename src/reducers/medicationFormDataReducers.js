@@ -1,9 +1,9 @@
 import * as types from '../actions/actionTypes';
-import initialState from './initialState';
 
 const initialState = {
   name: "",
   dose: "",
+  first_dose: "",
   prescribed: "",
   notes: ""
 }
