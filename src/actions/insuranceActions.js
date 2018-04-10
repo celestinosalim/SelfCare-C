@@ -16,10 +16,17 @@ const addInsurance = insurance => {
   }
 }
 
+// Action Creators - FORM
 export const updateInsuranceFormData = insuranceFormData => {
   return {
     type: types.UPDATE_INSURANCE,
     insuranceFormData
+  }
+}
+
+export const resetInsuranceForm = () => {
+  return {
+    type: types.RESET_FORM
   }
 }
 
@@ -28,7 +35,9 @@ export const getInsurances = () => {
   return dispatch => {
     return fetch(`${API_URL}/insurances`)
       .then(response => response.json())
-      .then(insurances => dispatch(setInsurances(insurances)))
+      .then(insurances => {
+        dispatch(setInsurances(insurances))
+      })
       .catch(error => console.log(error));
   };
 }
@@ -43,7 +52,10 @@ export const createInsurance = insurance => {
       body: JSON.stringify({insurance: insurance})
     })
       .then(response => response.json())
-      .then(insurance => dispatch(addInsurance(insurance)))
+      .then(insurance => {
+        dispatch(addInsurance(insurance))
+        dispatch(resetInsuranceForm())
+      })
       .catch(error => console.log(error))
   };
 }

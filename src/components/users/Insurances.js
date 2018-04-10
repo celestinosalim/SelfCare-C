@@ -1,22 +1,16 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const Insurances = ({insurances}) => {
-
-  const renderInsurances = insurances.map(insurance =>
-    <div className='AttrInfo' key={insurance.id}>
-      <h4>Insurance Name: {insurance.name}</h4>
-      <p>Address: {insurance.address}</p>
-      <p>Phone: {insurance.phone}</p>
-      <p>Notes: {insurance.notes}</p>
-      <Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button>
-    </div>
-  )
+const Insurances = ({insurance}) => {
 
   return (
-    <div className="AttrList">
-      {renderInsurances}
-    </div>
+    <tr className='AttrInfo' key={insurance.id}>
+      <td>{insurance.name}</td>
+      <td>{insurance.address}</td>
+      <td>{insurance.phone}</td>
+      <td>{insurance.notes}</td>
+      <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>
+    </tr>
   )
 };
 

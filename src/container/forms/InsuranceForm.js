@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
-// import { updateInsuranceFormData, createInsurance} from '../../actions/insuranceActions'
+import { updateInsuranceFormData, createInsurance} from '../../actions/insuranceActions'
 
 class InsuranceForm extends Component {
 
   handleChange(e) {
-    // const { name, value } = e.target
-    // const currentMedicationFormData = Object.assign({}, this.props.medicationFormData, {
-    //   [name]: value
-    // })
-    // this.props.updateMedicationFormData(currentMedicationFormData)
+    const { name, value } = e.target
+    const currentInsuranceFormData = Object.assign({}, this.props.insuranceFormData, {
+      [name]: value
+    })
+    this.props.updateInsuranceFormData(currentInsuranceFormData)
   }
 
   handleSubmit(e) {
     //call action.addMedications to tell reducer to add the new medication
     e.preventDefault()
-    // this.props.store.createMedication(this.props.medicationFormData)
+    this.props.store.createInsurance(this.props.insuranceFormData)
   }
 
   render() {
@@ -72,14 +72,14 @@ class InsuranceForm extends Component {
     )
   }
 }
-//
-// const mapStateToProps = (state) => {
-//   return {
-//     medicationFormData: state.medicationFormData
-//   }
-// }
-//
-// export default connect(mapStateToProps, {
-//   updateMedicationFormData,
-//   createMedication
-// })(InsuranceForm);
+
+const mapStateToProps = (state) => {
+  return {
+    insuranceFormData: state.insuranceFormData
+  }
+}
+
+export default connect(mapStateToProps, {
+  updateInsuranceFormData,
+  createInsurance
+})(InsuranceForm);
