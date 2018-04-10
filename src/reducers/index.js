@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import authReducers from './authReducers';
-import medicationReducers from './medicationReducers';
+import medicationsReducers from './medicationsReducers';
+
 // import insuranceReducers from './insuranceReducers';
 // import providerReducers from './providerReducers';
 // import behaviorReducers from './behaviorReducers';
@@ -8,7 +9,7 @@ import medicationReducers from './medicationReducers';
 
 const rootReducer = combineReducers({
   auth: authReducers,
-  medication: medicationReducers,
+  medications: medicationsReducers,
   // insurance: insuranceReducers,
   // provider: providerReducers,
   // behavior: behaviorReducers,
