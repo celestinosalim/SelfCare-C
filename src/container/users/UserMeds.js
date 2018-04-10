@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getMedications } from '../../actions/medicationActions';
 
 import Medications from '../../components/users/Medications';
-import MedicationForm from '../MedicationForm';
+import MedicationForm from '../forms/MedicationForm';
 
 class UserMeds extends Component {
   componentDidMount() {
