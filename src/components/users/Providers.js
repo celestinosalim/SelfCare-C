@@ -9,7 +9,7 @@ const Providers = ({providers}) => {
       <td>{provider.address}</td>
       <td>{provider.phone}</td>
       {provider.departments.map(department =>
-        <td>{department.name}</td>
+        <td key={department.id}>{department.name}</td>
       )}
       <td>{provider.first_visit}</td>
       <td>{provider.notes}</td>
