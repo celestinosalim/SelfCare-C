@@ -8,6 +8,9 @@ export default (state = [], action) => {
     case types.ADD_INSURANCE:
       return state.concat(action.insurance);
 
+    case types.DELETE_INSURANCE:
+      return 
+
     default:
       return state;
   }

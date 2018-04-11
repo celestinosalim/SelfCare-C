@@ -34,6 +34,9 @@ export default (state = [], action) => {
     case types.ADD_USER:
       return state.concat(action.user);
 
+    case types.DELETE_USER:
+      return 
+
     case types.LOGOUT:
       return {
         ...state,
@@ -43,4 +46,5 @@ export default (state = [], action) => {
       };
     default:
       return state;
+  }
 }

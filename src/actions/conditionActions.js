@@ -16,10 +16,23 @@ const addCondition = condition => {
   }
 }
 
+const deleteCondition = condition => {
+  return {
+    type: types.DELETE_CONDITION,
+    condition
+  }
+}
+
 export const updateConditionFormData = conditionFormData => {
   return {
     type: types.UPDATE_CONDITION,
     conditionFormData
+  }
+}
+
+export const resetConditionForm = () => {
+  return {
+    type: types.RESET_FORM
   }
 }
 

@@ -59,6 +59,12 @@ const addUser = users => {
   users
 }
 
+const deleteUser = users => {
+  type: types.DELETE_USER,
+  users
+}
+
+
 export const getUsers = () => {
   return dispatch => {
     return fetch(`${API_URL}/users`)

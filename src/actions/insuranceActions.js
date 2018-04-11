@@ -16,6 +16,13 @@ const addInsurance = insurance => {
   }
 }
 
+const deleteInsurance = insurance => {
+  return {
+    type: types.DELETE_INSURANCE,
+    insurance
+  }
+}
+
 // Action Creators - FORM
 export const updateInsuranceFormData = insuranceFormData => {
   return {

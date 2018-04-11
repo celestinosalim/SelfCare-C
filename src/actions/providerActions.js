@@ -16,6 +16,13 @@ const addProvider = provider => {
   }
 }
 
+const deleteProvider = provider => {
+  return {
+    type: types.DELETE_PROVIDER,
+    provider
+  }
+}
+
 // Action Creators - FORM
 export const updateProviderFormData = providerFormData => {
   return {

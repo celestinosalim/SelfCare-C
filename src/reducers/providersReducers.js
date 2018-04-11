@@ -8,6 +8,9 @@ export default (state = [], action) => {
     case types.ADD_PROVIDER:
       return state.concat(action.provider);
 
+    case types.DELETE_PROVIDER:
+      return 
+
     default:
       return state;
   }

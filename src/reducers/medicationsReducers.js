@@ -8,6 +8,12 @@ export default (state = [], action) => {
     case types.ADD_MEDICATION:
       return state.concat(action.medication);
 
+    case types.UPDATE_MEDICATION:
+      return state.concat(action.medication);
+
+    case types.DELETE_MEDICATION:
+      return 
+
     default:
       return state;
   }

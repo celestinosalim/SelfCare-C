@@ -16,6 +16,13 @@ const addMedication = medication => {
   }
 }
 
+const deleteMedication = medication => {
+  return {
+    type: types.DELETE_MEDICATION,
+    medication
+  }
+}
+
 // Action Creators - FORM
 export const updateMedicationFormData = medicationFormData => {
   return {
