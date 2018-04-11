@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
-import {Button} from 'react-bootstrap';
-import MedicationForm from './MedicationForm'
+import { Button } from 'react-bootstrap';
+import AddNewObjBtn from '../components/common/addNewObjBtn'
+
+import MedicationForm from './forms/MedicationForm';
 
 class AddMedication extends Component {
+  constructor(){
+    super();
+    this.state = {
+      isHidden: true
+    }
+  }
 
-  handleClick(e) {
-    return console.log("hi")
+  toggleHidden(){
+    this.setState({
+      isHidden: !this.state.isHidden
+    })
   }
 
   render() {
     return (
       <div className="AttrNew">
-        <Button onClick={this.handleClick}>Add New Medication</Button>
-        <MedicationForm />
+        <Button onClick={this.toggleHidden.bind(this)}>Add New Medication</Button>
+        {!this.state.isHidden && <MedicationForm />}
       </div>
     )
   }

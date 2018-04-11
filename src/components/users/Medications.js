@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button , Table } from 'react-bootstrap';
 
-const Medications = ({medication}) =>  {
+const Medications = ({medications}) =>  {
 
-  return (
+  const renderMeds = medications.map(medication =>
     <tr className='AttrInfo' key={medication.id}>
       <td>{medication.name}</td>
       <td>{medication.dose}</td>
@@ -12,6 +12,24 @@ const Medications = ({medication}) =>  {
       <td>{medication.notes}</td>
       <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>
     </tr>
+  )
+
+  return (
+    <Table striped bordered condensed hover>
+      <thead>
+        <tr>
+          <th>Medication Name</th>
+          <th>Dose</th>
+          <th>Date of First Dose</th>
+          <th>Prescribed By</th>
+          <th>Notes</th>
+          <th>Edit / Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {renderMeds}
+      </tbody>
+    </Table>
   )
 }
 
