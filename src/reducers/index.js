@@ -6,7 +6,7 @@ import insurancesReducers from './insurancesReducers';
 import insuranceFormDataReducers from './insuranceFormDataReducers';
 import providersReducers from './providersReducers';
 import providerFormDataReducers from './providerFormDataReducers';
-// import behaviorReducers from './behaviorsReducers';
+import behaviorsReducers from './behaviorsReducers';
 // import conditionReducers from './conditionsReducers';
 
 const rootReducer = combineReducers({
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   insuranceFormData: insuranceFormDataReducers,
   providers: providersReducers,
   providerFormData: providerFormDataReducers,
-  // behavior: behaviorReducers,
+  behaviors: behaviorsReducers,
   // condition: conditionReducers
 });
 
