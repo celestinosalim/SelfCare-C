@@ -1,12 +1,16 @@
 import React from 'react';
+import { Jumbotron, Button } from 'react-bootstrap';
 
 export default () => {
   return (
-    <div className="App">
-      <h1 className="App-name">Self-Care Tracker</h1>
-      <p className="App-tagline">
+    <Jumbotron>
+      <h1>Self-Care Tracker</h1>
+      <p>
         Manage your <strong>Mental Health and Emotions</strong> from your daily habits.
       </p>
-    </div>
+      <p>
+        <Button bsStyle="primary">Learn more</Button>
+      </p>
+    </Jumbotron>
   )
 }
