@@ -2,7 +2,7 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   name: "",
-  dose: "",
+  dose: 0,
   first_dose: "",
   prescribed: "",
   notes: ""
