@@ -30,7 +30,6 @@ class EditMedication extends Component {
   }
 
   handleDelete(){
-    console.log("bye")
     this.props.deleteMedication(this.props.id);
   }
 
@@ -54,12 +53,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditMedication);
-
-
-
-// export default EditMedication
-
-// <div className="AttrNew">
-//   <Button onClick={this.toggleHidden.bind(this)}>Add New Medication</Button>
-//   {!this.state.isHidden && <MedicationForm />}
-// </div>
