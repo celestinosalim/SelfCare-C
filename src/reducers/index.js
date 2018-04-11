@@ -5,6 +5,7 @@ import medicationFormDataReducers from './medicationFormDataReducers';
 import insurancesReducers from './insurancesReducers';
 import insuranceFormDataReducers from './insuranceFormDataReducers';
 import providersReducers from './providersReducers';
+import providerFormDataReducers from './providerFormDataReducers';
 // import behaviorReducers from './behaviorsReducers';
 // import conditionReducers from './conditionsReducers';
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   insurances: insurancesReducers,
   insuranceFormData: insuranceFormDataReducers,
   providers: providersReducers,
+  providerFormData: providerFormDataReducers,
   // behavior: behaviorReducers,
   // condition: conditionReducers
 });

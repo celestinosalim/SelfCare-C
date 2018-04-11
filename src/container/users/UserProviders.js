@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { getProviders } from '../../actions/providerActions';
 import Providers from '../../components/users/Providers';
+import AddProvider from '../addProvider';
 
 class UserProviders extends Component {
   componentDidMount() {
@@ -16,10 +16,9 @@ class UserProviders extends Component {
           <h3>Providers</h3>
         </div>
         <div className="AttrList">
-          {this.props.providers.map(provider =>
-            <Providers key={provider.id} provider={provider}/>
-          )}
+          <Providers providers={this.props.providers}/>
         </div>
+        <AddProvider />
       </div>
     );
   }

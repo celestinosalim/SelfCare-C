@@ -1,29 +1,37 @@
 import React from 'react';
-import { Tabs, Tab, Button } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 
-const Providers = ({provider}) => {
+const Providers = ({providers}) => {
+
+  const renderProviders = providers.map(provider =>
+    <tr className='AttrInfo' key={provider.id}>
+      <td>provider department</td>
+      <td>{provider.first_visit}</td>
+      <td>{provider.name}</td>
+      <td>{provider.address}</td>
+      <td>{provider.phone}</td>
+      <td>{provider.notes}</td>
+      <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>
+    </tr>
+  )
 
   return (
-    <Tabs
-      // activeKey={this.state.key}
-      // onSelect={this.handleSelect}
-      id="controlled-tab-example"
-    >
-      <Tab eventKey={1} title="doctor.category" key={provider.id}>
-        <div className="DeptTitle">
-          <h4>provider.department</h4>
-          <h4>{provider.department}</h4>
-        </div>
-        <div className='DeptInfo'>
-          <p>{provider.name}</p>
-          <p>Address: {provider.address}</p>
-          <p>Phone: {provider.phone}</p>
-          <p>Date of First Visit: {provider.first_visit}</p>
-          <p>Notes: {provider.notes}</p>
-          <Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button>
-        </div>
-      </Tab>
-    </Tabs>
+    <Table striped bordered condensed hover>
+      <thead>
+        <tr>
+          <th>Speciality</th>
+          <th>First Visit</th>
+          <th>Provider Name</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Notes</th>
+          <th>Edit / Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {renderProviders}
+      </tbody>
+    </Table>
   );
 }
 

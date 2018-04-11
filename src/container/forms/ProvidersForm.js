@@ -1,23 +1,36 @@
 import React, { Component } from 'react';
-import { ControlLabel, FormControl, Radio, Checkbox, Button, Col} from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
-// import { updateProviderFormData, createProvider } from '../../actions/providerActions'
+import { updateProviderFormData, createProvider } from '../../actions/providerActions'
 
 class ProvidersForm extends Component {
-  render() {
-    const { name, address, phone, notes } = this.props.providerFormData;
 
+  handleChange = (e) => {
+    const { name, value } = e.target
+    const currentProviderFormData = Object.assign({}, this.props.providerFormData, {
+      [name]: value
+    })
+    this.props.updateProviderFormData(currentProviderFormData)
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.createProvider(this.props.providerFormData)
+  }
+
+  render() {
+    const { name, address, phone, speciality, first_visit, notes } = this.props.providerFormData;
     return (
       <div className="formContainer">
-        <h1>Add a Provider</h1>
+        <h3>Add a Provider</h3>
         <Form onSubmit={this.handleSubmit}>
           <TextFieldGroup
             label="Name:"
             id="formControlsName"
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="name"
             value={name}
             onChange={this.handleChange}
           />
@@ -26,10 +39,10 @@ class ProvidersForm extends Component {
             id="formControlsAddress"
             type="text"
             name="address"
-            placeholder="Address"
+            placeholder="address"
             value={address}
             onChange={this.handleChange}
-           />
+          />
           <TextFieldGroup
             label="Phone:"
             id="formControlsPhone"
@@ -38,8 +51,26 @@ class ProvidersForm extends Component {
             placeholder="phone"
             value={phone}
             onChange={this.handleChange}
+          />
+          <TextFieldGroup
+             label="Speciality:"
+             id="formControlsSpeciality"
+             type="text"
+             name="speciality"
+             placeholder="speciality"
+             value={speciality}
+             onChange={this.handleChange}
+          />
+          <TextFieldGroup
+            label="First Visit:"
+            id="formControlsFirstVisit"
+            type="text"
+            name="first_visit"
+            placeholder="first_visit"
+            value={first_visit}
+            onChange={this.handleChange}
            />
-           <TextFieldGroup
+          <TextFieldGroup
              label="Notes:"
              id="formControlsNotes"
              type="text"
@@ -47,23 +78,8 @@ class ProvidersForm extends Component {
              placeholder="notes"
              value={notes}
              onChange={this.handleChange}
-            />
-           <FormGroup>
-             <Radio name="radioGroup" inline>
-               Primary Care/General Practicioner
-             </Radio>
-             <Radio name="radioGroup" inline>
-               Psychiatrist
-             </Radio>
-             <Radio name="radioGroup" inline>
-               Therapist
-             </Radio>
-           </FormGroup>
-           <FormGroup>
-             <Checkbox name="checkBox" inline>
-               Currently Seeing
-             </Checkbox>
-           </FormGroup>
+          />
+
          <Button type="submit" value="Add Provider">Add Provider</Button>
         </Form>
       </div>
@@ -71,4 +87,31 @@ class ProvidersForm extends Component {
   }
 }
 
-export default ProvidersForm
+const mapStateToProps = (state) => {
+  return {
+    providerFormData: state.providerFormData
+  }
+}
+
+export default connect(mapStateToProps, {
+  updateProviderFormData,
+  createProvider
+})(ProvidersForm);
+
+// import { Form, Button, FormGroup, ControlLabel, FormControl, Radio, Checkbox} from 'react-bootstrap';
+// <FormGroup>
+//   <Radio name="radioGroup" inline>
+//     Primary Care/General Practicioner
+//   </Radio>
+//   <Radio name="radioGroup" inline>
+//     Psychiatrist
+//   </Radio>
+//   <Radio name="radioGroup" inline>
+//     Therapist
+//   </Radio>
+// </FormGroup>
+// <FormGroup>
+//   <Checkbox name="checkBox" inline>
+//     Currently Seeing
+//   </Checkbox>
+// </FormGroup>
