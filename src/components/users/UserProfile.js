@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
 
 import UserDetails from '../../container/users/UserDetails'
