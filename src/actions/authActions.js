@@ -1,7 +1,7 @@
 import { API_URL } from './apiUrl'
-import * from './actionTypes'
+import * as types from './actionTypes'
 
-//Action Creators
+// //Action Creators
 const authRequest = () => {
   return {
     type: AUTH_REQUEST,
@@ -34,9 +34,6 @@ export const getToken = () => {
 
 }
 
-export const findUser = () => {
-
-}
 
 export const authUser = () => {
   // if user cant be found send error
@@ -47,21 +44,48 @@ export const getAuthenticatedUser = () => {
 
 }
 
-export function showUser(){
-  return (dispatch) => {
-    dispatch({
-      type: types.REQUEST_USER
-    });
-    return fetch(`${API_URL}/users`)
-     .then(res => res.json())
-     .then(users => dispatch({
-       type: types.SHOW_USER,
-       users
-     }))
 
-  }
+
+
+
+
+const setUsers = users => {
+  type: types.REQUEST_USER,
+  users
 }
 
+const addUser = users => {
+  type: types.ADD_USER,
+  users
+}
+
+export const getUsers = () => {
+  return dispatch => {
+    return fetch(`${API_URL}/users`)
+      .then(response => response.json())
+      .then(users => {
+        dispatch(setUsers(users))
+      }) //returns collection of medications
+      .catch(error => console.log(error));
+  };
+}
+
+export const createUser = user => {
+  return dispatch => {
+    return fetch(`${API_URL}/users`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user: user})
+    })
+      .then(response => response.json())
+      .then(user => {
+        dispatch(addUser(user))
+      })
+      .catch(error => console.log(error));
+  };
+}
 
 ///// DEFINE HOW TO AUTHENTICATE A USER /////
 //initialize a connection

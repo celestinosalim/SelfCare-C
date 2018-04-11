@@ -1,13 +1,13 @@
 import * as types from '../actions/actionTypes';
 
-const initialState = {
-  isAuthenticated: false,
-  currentUser: {}, //the payload that was serialized within the token
-  token: null,
-  errors: [] //contains an error message following a failed “knock”
-}
+// const initialState = {
+//   isAuthenticated: false,
+//   currentUser: {}, //the payload that was serialized within the token
+//   token: null,
+//   errors: [] //contains an error message following a failed “knock”
+// }
 
-export default (state = initialState, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case types.AUTH_REQUEST:
       return {
@@ -28,6 +28,12 @@ export default (state = initialState, action) => {
         currentUser: action.user, //user is found
         token: action.token //token associated with user is confirmed
       };
+    case types.REQUEST_USER:
+      return action.users;
+
+    case types.ADD_USER:
+      return state.concat(action.user);
+
     case types.LOGOUT:
       return {
         ...state,
@@ -37,5 +43,4 @@ export default (state = initialState, action) => {
       };
     default:
       return state;
-  }
 }
