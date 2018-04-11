@@ -16,10 +16,10 @@ const addMedication = medication => {
   }
 }
 
-const deleteMedication = medication => {
+export const deleteMedication = medication => {
   return {
     type: types.DELETE_MEDICATION,
-    medication
+    id: medication
   }
 }
 

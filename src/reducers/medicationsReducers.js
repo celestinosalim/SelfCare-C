@@ -1,5 +1,7 @@
 import * as types from '../actions/actionTypes';
 
+let id = 0;
+
 export default (state = [], action) => {
   switch (action.type) {
     case types.REQUEST_MEDICATIONS:
@@ -8,12 +10,11 @@ export default (state = [], action) => {
     case types.ADD_MEDICATION:
       return state.concat(action.medication);
 
-    case types.UPDATE_MEDICATION:
-      return state.concat(action.medication);
+    // case types.UPDATE_MEDICATION:
+    //   return state.concat(action.medication);
 
     case types.DELETE_MEDICATION:
-      return 
-
+      return state.filter(medications => medications.id !== action.id)
     default:
       return state;
   }

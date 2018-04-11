@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button , Table } from 'react-bootstrap';
 
+import EditMedication from '../../container/editMedication'
+
 const Medications = ({medications}) =>  {
 
   const renderMeds = medications.map(medication =>
@@ -10,7 +12,7 @@ const Medications = ({medications}) =>  {
       <td>{medication.first_dose}</td>
       <td>{medication.prescribed}</td>
       <td>{medication.notes}</td>
-      <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>
+      <EditMedication medication={medication} id={medication.id}/>
     </tr>
   )
 
@@ -34,3 +36,4 @@ const Medications = ({medications}) =>  {
 }
 
 export default Medications;
+      // <td><Button bsStyle="link" onClick={this.props.handleEdit}>Edit</Button> | <Button bsStyle="link" onClick={this.props.handleDelete}>Delete</Button></td>
