@@ -5,6 +5,7 @@ export default () => {
   return (
     <Grid className="Footer">
       <footer>
+        <hr/>
         <p>© Christine Tran</p>
       </footer>
     </Grid>
