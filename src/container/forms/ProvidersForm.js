@@ -20,7 +20,7 @@ class ProvidersForm extends Component {
   }
 
   render() {
-    const { name, address, phone, speciality, first_visit, notes } = this.props.providerFormData;
+    const { name, address, phone, department, first_visit, notes } = this.props.providerFormData;
     return (
       <div className="formContainer">
         <h3>Add a Provider</h3>
@@ -53,12 +53,12 @@ class ProvidersForm extends Component {
             onChange={this.handleChange}
           />
           <TextFieldGroup
-             label="Speciality:"
-             id="formControlsSpeciality"
+             label="Department:"
+             id="formControlsDepartment"
              type="text"
-             name="speciality"
-             placeholder="speciality"
-             value={speciality}
+             name="department"
+             placeholder="department"
+             value={department}
              onChange={this.handleChange}
           />
           <TextFieldGroup
