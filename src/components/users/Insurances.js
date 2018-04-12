@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 
+import EditInsurance from '../../container/editInsurance'
+
 const Insurances = ({insurances}) => {
 
   const renderInsurances = insurances.map(insurance =>
@@ -9,7 +11,7 @@ const Insurances = ({insurances}) => {
       <td>{insurance.address}</td>
       <td>{insurance.phone}</td>
       <td>{insurance.notes}</td>
-      <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>
+      <EditInsurance insurance={insurance} id={insurance.id} />
     </tr>
   )
 

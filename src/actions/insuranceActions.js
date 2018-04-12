@@ -16,10 +16,10 @@ const addInsurance = insurance => {
   }
 }
 
-const deleteInsurance = insurance => {
+export const deleteInsurance = insurance => {
   return {
     type: types.DELETE_INSURANCE,
-    insurance
+    id: insurance
   }
 }
 
