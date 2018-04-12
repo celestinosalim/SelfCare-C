@@ -36,4 +36,3 @@ const Medications = ({medications}) =>  {
 }
 
 export default Medications;
-      // <td><Button bsStyle="link" onClick={this.props.handleEdit}>Edit</Button> | <Button bsStyle="link" onClick={this.props.handleDelete}>Delete</Button></td>
