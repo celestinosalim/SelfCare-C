@@ -5,6 +5,10 @@ import EditProvider from '../../container/editProvider'
 
 const Providers = ({providers}) => {
 
+  const emptyMessage = (
+    <tr>There are no Providers in your list.</tr>
+  )
+
   const renderProviders = providers.map(provider =>
     <tr className='AttrInfo' key={provider.id}>
       <td>{provider.name}</td>
@@ -33,7 +37,7 @@ const Providers = ({providers}) => {
         </tr>
       </thead>
       <tbody>
-        {renderProviders}
+        {renderProviders.length === 0 ? emptyMessage : renderProviders}
       </tbody>
     </Table>
   );

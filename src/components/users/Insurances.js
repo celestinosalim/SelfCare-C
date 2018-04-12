@@ -5,6 +5,10 @@ import EditInsurance from '../../container/editInsurance'
 
 const Insurances = ({insurances}) => {
 
+  const emptyMessage = (
+    <tr>There are no Providers in your list.</tr>
+  )
+
   const renderInsurances = insurances.map(insurance =>
     <tr className='AttrInfo' key={insurance.id}>
       <td>{insurance.name}</td>
@@ -27,7 +31,7 @@ const Insurances = ({insurances}) => {
         </tr>
       </thead>
       <tbody>
-        {renderInsurances}
+        {renderInsurances.length === 0 ? emptyMessage : renderInsurances}
       </tbody>
     </Table>
   )

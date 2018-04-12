@@ -1,9 +1,14 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
-import EditMedication from '../../container/editMedication'
+// import EditMedication from '../../container/editMedication'
 
 const Medications = ({medications}) =>  {
+
+  const emptyMessage = (
+    <tr>There are no medications in your list.</tr>
+  )
 
   const renderMeds = medications.map(medication =>
     <tr className='AttrInfo' key={medication.id}>
@@ -12,7 +17,7 @@ const Medications = ({medications}) =>  {
       <td>{medication.first_dose}</td>
       <td>{medication.prescribed}</td>
       <td>{medication.notes}</td>
-      <EditMedication medication={medication} id={medication.id}/>
+      <td><Link to={medication.id}>Edit</Link> | <Link to={medication.id}>Delete</Link></td>
     </tr>
   )
 
@@ -29,10 +34,12 @@ const Medications = ({medications}) =>  {
         </tr>
       </thead>
       <tbody>
-        {renderMeds}
+        {renderMeds.length === 0 ? emptyMessage : renderMeds}
       </tbody>
     </Table>
   )
 }
 
 export default Medications;
+
+      // <EditMedication medication={medication} id={medication.id}/>
