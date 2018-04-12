@@ -16,10 +16,10 @@ const addProvider = provider => {
   }
 }
 
-const deleteProvider = provider => {
+export const deleteProvider = provider => {
   return {
     type: types.DELETE_PROVIDER,
-    provider
+    id: provider
   }
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 
+import EditProvider from '../../container/editProvider'
+
 const Providers = ({providers}) => {
 
   const renderProviders = providers.map(provider =>
@@ -13,7 +15,7 @@ const Providers = ({providers}) => {
       )}
       <td>{provider.first_visit}</td>
       <td>{provider.notes}</td>
-      <td><Button bsStyle="link">Edit</Button> | <Button bsStyle="link">Delete</Button></td>
+      <EditProvider provider={provider} id={provider.id}/>
     </tr>
   )
 
