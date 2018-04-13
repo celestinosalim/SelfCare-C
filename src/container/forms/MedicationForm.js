@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
-import { updateMedicationFormData, createMedication } from '../../actions/medicationActions'
-
+import { enterMedicationFormData, createMedication } from '../../actions/medicationActions'
+// , updateMedication
 class MedicationForm extends Component {
 
   handleChange = (e) => {
@@ -11,8 +11,16 @@ class MedicationForm extends Component {
     const currentMedicationFormData = Object.assign({}, this.props.medicationFormData, {
       [name]: value
     })
-    this.props.updateMedicationFormData(currentMedicationFormData)
+    this.props.enterMedicationFormData(currentMedicationFormData)
   }
+
+  // handleEditUpdate = (e) => {
+  //   const { name, value } = e.target
+  //   const selectedMedsFormData = (this.props.medicationFormData, {
+  //     [name]: value
+  //   })
+  //   // this.props.actions.updateMedication(this.state.medication);
+  // }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -23,8 +31,6 @@ class MedicationForm extends Component {
     const { name, dose, first_dose, prescribed, notes } = this.props.medicationFormData;
 
     return (
-      <div className="formContainer">
-        <h3>Add a New Medication</h3>
         <Form onSubmit={this.handleSubmit}>
           <TextFieldGroup
             label="Name:"
@@ -71,11 +77,10 @@ class MedicationForm extends Component {
              value={notes}
              onChange={this.handleChange}
             />
-         <div className="submissionFields">
-           <Button type="submit" value="Add Medication">Add Medication</Button>
-         </div>
+         <br />
+           <Button bsStyle="success" type="submit" value="Add Medication">Add Medication</Button>
+
         </Form>
-      </div>
     )
   }
 }
@@ -87,6 +92,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-  updateMedicationFormData,
-  createMedication
+  enterMedicationFormData,
+  createMedication,
+  // updateMedication
 })(MedicationForm);

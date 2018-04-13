@@ -76,11 +76,11 @@ class Medications extends Component {
           <div className="AttrForm">
             <h3>Edit Medication</h3>
             <p>Medication Form with passed state goes here</p>
-            <Button onClick={this.toggleEdit}>Cancel</Button>
+            <Button bsStyle="link" onClick={this.toggleEdit}>Cancel</Button>
           </div>
           :
           <div className="AttrNew">
-            <Button onClick={this.toggleCreate}>Add New Medication</Button>
+            <Button bsStyle="primary" onClick={this.toggleCreate}>Add New Medication</Button>
           </div>
         }
 
@@ -88,7 +88,7 @@ class Medications extends Component {
           <div className="AttrForm">
             <h3>Add New Medication</h3>
             <MedicationForm />
-            <Button onClick={this.toggleCreate}>Cancel</Button>
+            <Button bsStyle="link" onClick={this.toggleCreate}>Cancel</Button>
           </div>
         }
 
