@@ -1,48 +1,87 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Button, Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { deleteProvider } from '../../actions/providerActions';
 
-import EditProvider from '../../container/editProvider'
+import ProviderForm from '../../container/forms/ProviderForm';
 
-const Providers = ({providers}) => {
+class Providers extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      isHidden: true
+    }
+    this.toggleEdit = this.toggleEdit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+  }
 
-  const emptyMessage = (
-    <tr>
-      <td colSpan="6">There are no providers in your list</td>
-    </tr>
-  )
+  toggleEdit(){
+    this.setState({
+      isHidden: !this.state.isHidden
+    })
+  }
 
-  const renderProviders = providers.map(provider =>
-    <tr className='AttrInfo' key={provider.id}>
-      <td>{provider.name}</td>
-      <td>{provider.address}</td>
-      <td>{provider.phone}</td>
-      {provider.departments.map(department =>
-        <td key={department.id}>{department.name}</td>
-      )}
-      <td>{provider.first_visit}</td>
-      <td>{provider.notes}</td>
-      <EditProvider provider={provider} id={provider.id}/>
-    </tr>
-  )
+  handleDelete(){
+    this.props.deleteProvider(this.props.id);
+  }
 
-  return (
-    <Table striped bordered condensed hover>
-      <thead>
-        <tr>
-          <th>Provider Name</th>
-          <th>Address</th>
-          <th>Phone</th>
-          <th>Speciality</th>
-          <th>First Visit</th>
-          <th>Notes</th>
-          <th>Edit / Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        {renderProviders.length === 0 ? emptyMessage : renderProviders}
-      </tbody>
-    </Table>
-  );
+  render() {
+    const emptyMessage = (
+      <tr>
+        <td colSpan="6">There are no providers in your list</td>
+      </tr>
+    )
+
+    const renderProviders = this.props.providers.map(provider =>
+      <tr className='AttrInfo' key={provider.id}>
+        <td>{provider.name}</td>
+        <td>{provider.address}</td>
+        <td>{provider.phone}</td>
+        {provider.departments.map(department =>
+          <td key={department.id}>{department.name}</td>
+        )}
+        <td>{provider.first_visit}</td>
+        <td>{provider.notes}</td>
+        <td><Button bsStyle="link" onClick={this.toggleEdit}>Edit</Button> | <Button bsStyle="link" onClick={this.handleDelete}>Delete</Button></td>
+      </tr>
+    )
+
+    return (
+      <div className="AttrList">
+        <Table striped bordered condensed hover>
+          <thead>
+            <tr>
+              <th>Provider Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Speciality</th>
+              <th>First Visit</th>
+              <th>Notes</th>
+              <th>Edit / Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderProviders.length === 0 ? emptyMessage : renderProviders}
+          </tbody>
+        </Table>
+          {!this.state.isHidden && <ProviderForm />}
+        <br />
+      </div>
+    );
+  }
 }
 
-export default Providers;
+const mapStateToProps = (state) => {
+  return ({
+    provider: state.provider
+  });
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    deleteProvider: deleteProvider
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Providers);

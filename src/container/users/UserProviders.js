@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 import { getProviders } from '../../actions/providerActions';
 import Providers from '../../components/users/Providers';
-import AddProvider from '../addProvider';
+import ProviderForm from '../../container/forms/ProviderForm';
 
 class UserProviders extends Component {
+  constructor(){
+    super();
+    this.state = {
+      isHidden: true
+    }
+  }
+
+  toggleHidden(){
+    this.setState({
+      isHidden: !this.state.isHidden
+    })
+  }
+
   componentDidMount() {
     this.props.getProviders()
   }
 
   render(){
+    const AddNewObjBtn = (
+      <div className="AttrNew">
+        <Button onClick={this.toggleHidden.bind(this)}>Add New Provider</Button>
+        {!this.state.isHidden && <ProviderForm />}
+      </div>
+    )
+
     return (
       <div className="UserProviders">
         <div className="AttrTitle">
@@ -18,7 +39,7 @@ class UserProviders extends Component {
         <div className="AttrList">
           <Providers providers={this.props.providers}/>
         </div>
-        <AddProvider />
+        {AddNewObjBtn}
       </div>
     );
   }
