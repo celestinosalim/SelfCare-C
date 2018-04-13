@@ -14,7 +14,6 @@ class Medications extends Component {
     }
     this.toggleCreate = this.toggleCreate.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
   }
 
   toggleCreate(){
@@ -29,8 +28,8 @@ class Medications extends Component {
     })
   }
 
-  handleDelete(){
-    this.props.deleteMedication(this.props.id);
+  handleDelete = (id) => {
+    this.props.deleteMedication(id);
   }
 
   render(){
@@ -48,7 +47,7 @@ class Medications extends Component {
         <td>{medication.first_dose}</td>
         <td>{medication.prescribed}</td>
         <td>{medication.notes}</td>
-        <td><Button bsStyle="link" onClick={this.toggleEdit}>Edit</Button> | <Button bsStyle="link" onClick={this.handleDelete}>Delete</Button></td>
+        <td><Button bsStyle="link" onClick={this.toggleEdit}>Edit</Button> | <Button bsStyle="link" onClick={() => this.handleDelete(medication.id)}>Delete</Button></td>
       </tr>
     )
 
@@ -76,6 +75,7 @@ class Medications extends Component {
           <div className="AttrForm">
             <h3>Edit Medication</h3>
             <p>Medication Form with passed state goes here</p>
+            // <MedicationForm />
             <Button bsStyle="link" onClick={this.toggleEdit}>Cancel</Button>
           </div>
           :
