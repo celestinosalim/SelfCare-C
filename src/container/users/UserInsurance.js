@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 import { getInsurances } from '../../actions/insuranceActions';
 import Insurances from '../../components/users/Insurances';
-import AddInsurance from '../addInsurance'
+import InsuranceForm from '../../container/forms/InsuranceForm';
 
 class UserInsurance extends Component {
+  constructor(){
+    super();
+    this.state = {
+      isHidden: true
+    }
+  }
+
+  toggleHidden(){
+    this.setState({
+      isHidden: !this.state.isHidden
+    })
+  }
+
   componentDidMount() {
     this.props.getInsurances()
   }
 
   render(){
+    const AddNewObjBtn = (
+      <div className="AttrNew">
+        <Button onClick={this.toggleHidden.bind(this)}>Add New Insurance</Button>
+        {!this.state.isHidden && <InsuranceForm />}
+      </div>
+    )
+
     return (
       <div className="UserInsurances">
         <div className="AttrTitle">
@@ -18,7 +39,7 @@ class UserInsurance extends Component {
         <div className="AttrList">
           <Insurances insurances={this.props.insurances}/>
         </div>
-        <AddInsurance />
+        {AddNewObjBtn}
       </div>
     )
   }
