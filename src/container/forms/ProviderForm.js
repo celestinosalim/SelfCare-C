@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FormGroup, Radio } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
 import { updateProviderFormData, createProvider } from '../../actions/providerActions'
+import Departments from '../../components/users/Departments'
 
 class ProvidersForm extends Component {
 
@@ -14,13 +15,18 @@ class ProvidersForm extends Component {
     this.props.updateProviderFormData(currentProviderFormData)
   }
 
+  handleCheck = (e) => {
+
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createProvider(this.props.providerFormData)
   }
 
   render() {
-    const { name, address, phone, department, first_visit, notes } = this.props.providerFormData;
+    const { name, address, phone, first_visit, notes } = this.props.providerFormData;
+
     return (
       <div className="formContainer">
         <h3>Add a Provider</h3>
@@ -51,15 +57,6 @@ class ProvidersForm extends Component {
             placeholder="phone"
             value={phone}
             onChange={this.handleChange}
-          />
-          <TextFieldGroup
-             label="Department:"
-             id="formControlsDepartment"
-             type="text"
-             name="department"
-             placeholder="department"
-             value={department}
-             onChange={this.handleChange}
           />
           <TextFieldGroup
             label="First Visit:"
@@ -98,20 +95,48 @@ export default connect(mapStateToProps, {
   createProvider
 })(ProvidersForm);
 
-// import { Form, Button, FormGroup, ControlLabel, FormControl, Radio, Checkbox} from 'react-bootstrap';
 // <FormGroup>
-//   <Radio name="radioGroup" inline>
-//     Primary Care/General Practicioner
+//   <Radio
+//     name="departments[]"
+//     value={this.props.departments}
+//     inline>
+//     Primary Care
 //   </Radio>
-//   <Radio name="radioGroup" inline>
+//   <Radio
+//     name="departments[]"
+//     value={this.props.departments}
+//     inline>
 //     Psychiatrist
 //   </Radio>
-//   <Radio name="radioGroup" inline>
+//   <Radio
+//     name="departments[]"
+//     value={this.props.departments}
+//     inline>
 //     Therapist
 //   </Radio>
 // </FormGroup>
+//
 // <FormGroup>
-//   <Checkbox name="checkBox" inline>
-//     Currently Seeing
-//   </Checkbox>
+//   <Radio
+//     name="department_id"
+//     value="1"
+//
+//     onChange={this.handleChange}
+//     inline>
+//     Primary
+//   </Radio>
+//   <Radio
+//     name="department_id"
+//     value="2"
+//     onChange={this.handleChange}
+//     inline>
+//     Psychiatrist
+//   </Radio>
+//   <Radio
+//     name="department_id"
+//     value="3"
+//     onChange={this.handleChange}
+//     inline>
+//     Therapist
+//   </Radio>
 // </FormGroup>
