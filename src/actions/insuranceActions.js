@@ -16,7 +16,7 @@ const addInsurance = insurance => {
   }
 }
 
-export const deleteInsurance = insurance => {
+const destroyInsurance = insurance => {
   return {
     type: types.DELETE_INSURANCE,
     id: insurance
@@ -62,6 +62,23 @@ export const createInsurance = insurance => {
       .then(insurance => {
         dispatch(addInsurance(insurance))
         dispatch(resetInsuranceForm())
+      })
+      .catch(error => console.log(error))
+  };
+}
+
+export const deleteInsurance = insuranceId => {
+  return dispatch => {
+    return fetch(`${API_URL}/insurances/${insuranceId}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({insurance: insuranceId})
+    })
+      .then(response => response.json())
+      .then(insurance => {
+        dispatch(destroyInsurance(insurance))
       })
       .catch(error => console.log(error))
   };

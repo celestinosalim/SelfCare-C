@@ -8,12 +8,17 @@ export default (state = [], action) => {
       return action.providers;
 
     case types.ADD_PROVIDER:
-      id++;
-      const provider = Object.assign({}, action.provider, { id: id });
-      return state.concat(provider);
+      return [
+        ...state,
+        action.provider
+      ]
+      // id++;
+      // const provider = Object.assign({}, action.provider, { id: id });
+      // return state.concat(provider);
 
     case types.DELETE_PROVIDER:
-      return state.filter(provider => provider.id !== action.id);
+      const providers = state.filter(provider => provider.id !== action.id);
+      return providers
 
     default:
       return state;

@@ -8,12 +8,17 @@ export default (state = [], action) => {
       return action.insurances;
 
     case types.ADD_INSURANCE:
-      id++;
-      const insurance = Object.assign({}, action.insurance, { id: id });
-      return state.concat(insurance);
+      return [
+        ...state,
+        action.insurance
+      ]
+      // id++;
+      // const insurance = Object.assign({}, action.insurance, { id: id });
+      // return state.concat(insurance);
 
     case types.DELETE_INSURANCE:
-      return state.filter(insurance => insurance.id !== action.id);
+      const insurances = state.filter(insurance => insurance.id !== action.id);
+      return insurances
 
     default:
       return state;

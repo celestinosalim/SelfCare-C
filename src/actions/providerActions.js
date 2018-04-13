@@ -16,7 +16,7 @@ const addProvider = provider => {
   }
 }
 
-export const deleteProvider = provider => {
+const destroyProvider = provider => {
   return {
     type: types.DELETE_PROVIDER,
     id: provider
@@ -62,6 +62,23 @@ export const createProvider = provider => {
       .then(provider => {
         dispatch(addProvider(provider))
         dispatch(resetProviderForm())
+      })
+      .catch(error => console.log(error))
+  };
+}
+
+export const deleteProvider = providerId => {
+  return dispatch => {
+    return fetch(`${API_URL}/providers/${providerId}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({provider: providerId})
+    })
+      .then(response => response.json())
+      .then(provider => {
+        dispatch(destroyProvider(provider))
       })
       .catch(error => console.log(error))
   };
