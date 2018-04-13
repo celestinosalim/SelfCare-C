@@ -16,7 +16,7 @@ const addMedication = medication => {
   }
 }
 
-export const deleteMedication = medication => {
+const destroyMedication = medication => {
   return {
     type: types.DELETE_MEDICATION,
     id: medication
@@ -62,6 +62,23 @@ export const createMedication = medication => {
       .then(medication => {
         dispatch(addMedication(medication))
         dispatch(resetMedicationForm())
+      })
+      .catch(error => console.log(error))
+  };
+}
+
+export const deleteMedication = medicationId => {
+  return dispatch => {
+    return fetch(`${API_URL}/medications/${medicationId}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({medication: medicationId})
+    })
+      .then(response => response.json())
+      .then(medication => {
+        dispatch(destroyMedication(medication))
       })
       .catch(error => console.log(error))
   };
