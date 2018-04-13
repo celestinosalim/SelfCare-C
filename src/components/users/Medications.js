@@ -1,13 +1,15 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Button, Table } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-// import EditMedication from '../../container/editMedication'
+import EditMedication from '../../container/editMedication'
 
 const Medications = ({medications}) =>  {
 
   const emptyMessage = (
-    <tr>There are no medications in your list.</tr>
+    <tr>
+      <td colSpan="6">There are no medications in your list</td>
+    </tr>
   )
 
   const renderMeds = medications.map(medication =>
@@ -17,7 +19,7 @@ const Medications = ({medications}) =>  {
       <td>{medication.first_dose}</td>
       <td>{medication.prescribed}</td>
       <td>{medication.notes}</td>
-      <td><Link to={medication.id}>Edit</Link> | <Link to={medication.id}>Delete</Link></td>
+      <EditMedication medication={medication} id={medication.id}/>
     </tr>
   )
 
@@ -41,5 +43,3 @@ const Medications = ({medications}) =>  {
 }
 
 export default Medications;
-
-      // <EditMedication medication={medication} id={medication.id}/>

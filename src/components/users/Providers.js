@@ -6,7 +6,9 @@ import EditProvider from '../../container/editProvider'
 const Providers = ({providers}) => {
 
   const emptyMessage = (
-    <tr>There are no Providers in your list.</tr>
+    <tr>
+      <td colSpan="6">There are no providers in your list</td>
+    </tr>
   )
 
   const renderProviders = providers.map(provider =>

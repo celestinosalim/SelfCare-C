@@ -6,7 +6,9 @@ import EditInsurance from '../../container/editInsurance'
 const Insurances = ({insurances}) => {
 
   const emptyMessage = (
-    <tr>There are no Providers in your list.</tr>
+    <tr>
+      <td colSpan="6">There are no insurances in your list</td>
+    </tr>
   )
 
   const renderInsurances = insurances.map(insurance =>
