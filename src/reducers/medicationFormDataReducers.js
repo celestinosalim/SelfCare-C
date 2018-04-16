@@ -1,17 +1,17 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
+  id: "",
   name: "",
   dose: 0,
   first_dose: "",
   prescribed: "",
-  notes: ""
+  notes: "",
+  errors: {}
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.UPDATE_MEDICATION:
-      return action.medicationFormData;
 
     case types.RESET_FORM:
       return initialState;
