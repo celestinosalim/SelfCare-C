@@ -25,10 +25,8 @@ class Medications extends Component {
   }
 
   toggleEdit = (medication) => {
-    debugger
     this.setState({
       isEditing: !this.state.isEditing,
-      editing: medication.id,
       medication: medication,
 
     })
@@ -112,7 +110,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    enterMedicationFormData: enterMedicationFormData,
     deleteMedication: deleteMedication
   }, dispatch);
 };
