@@ -5,6 +5,27 @@ import { connect } from 'react-redux';
 import { enterMedicationFormData, createMedication } from '../../actions/medicationActions'
 // , updateMedication
 class MedicationForm extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillReceiveProps(nextProps){
+    debugger;
+    const { id, name, dose, first_dose, prescribed, notes } = nextProps.medication;
+    if (this.props.id !== nextProps.id) {
+      this.setState({
+        medication: nextProps.medication
+      })
+    }
+  }
+
+
+  // handleChange = (e) => {
+  //   const { name, value } = e.target
+  //   this.setState({
+  //     [name]: value
+  //   })
+  // }
 
   handleChange = (e) => {
     const { name, value } = e.target
@@ -14,24 +35,22 @@ class MedicationForm extends Component {
     this.props.enterMedicationFormData(currentMedicationFormData)
   }
 
-  // handleEditUpdate = (e) => {
-  //   const { name, value } = e.target
-  //   const selectedMedsFormData = (this.props.medicationFormData, {
-  //     [name]: value
-  //   })
-  //   // this.props.actions.updateMedication(this.state.medication);
-  // }
-
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createMedication(this.props.medicationFormData)
+    // this.props.createMedication(this.props.medicationFormData)
+    // if (this.props.medication.id === "") {
+    //   this.props.createMedication(this.props.medicationFormData)
+    // } else {
+    //   console.log(this.props.medication)
+    //   this.props.updateMedication(this.state)
+    // }
   }
 
   render() {
-    const { name, dose, first_dose, prescribed, notes } = this.props.medicationFormData;
+    const { id, name, dose, first_dose, prescribed, notes } = this.props.medicationFormData;
 
     return (
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} data-id={id}>
           <TextFieldGroup
             label="Name:"
             id="formControlsName"
@@ -79,7 +98,6 @@ class MedicationForm extends Component {
             />
          <br />
            <Button bsStyle="success" type="submit" value="Add Medication">Add Medication</Button>
-
         </Form>
     )
   }
@@ -87,6 +105,7 @@ class MedicationForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    medication: state.medication,
     medicationFormData: state.medicationFormData
   }
 }
