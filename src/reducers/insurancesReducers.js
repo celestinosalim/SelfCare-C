@@ -1,7 +1,5 @@
 import * as types from '../actions/actionTypes';
 
-let id: 0;
-
 export default (state = [], action) => {
   switch (action.type) {
     case types.REQUEST_INSURANCES:
@@ -12,13 +10,20 @@ export default (state = [], action) => {
         ...state,
         action.insurance
       ]
-      // id++;
-      // const insurance = Object.assign({}, action.insurance, { id: id });
-      // return state.concat(insurance);
+
+    case types.UPDATE_INSURANCE:
+      // const index = state.findIndex(insurance => insurance.id === action.insurance.id)
+      return [
+        ...state.insurances,
+        action.insurance
+      ]
 
     case types.DELETE_INSURANCE:
       const insurances = state.filter(insurance => insurance.id !== action.id);
       return insurances
+
+    case types.RESET_FORM:
+      return state;
 
     default:
       return state;

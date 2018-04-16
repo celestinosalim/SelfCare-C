@@ -24,10 +24,10 @@ const destroyInsurance = insurance => {
 }
 
 // Action Creators - FORM
-export const updateInsuranceFormData = insuranceFormData => {
+export const setSelectedInsurance = insurance => {
   return {
     type: types.UPDATE_INSURANCE,
-    insuranceFormData
+    insurance
   }
 }
 
@@ -61,6 +61,24 @@ export const createInsurance = insurance => {
       .then(response => response.json())
       .then(insurance => {
         dispatch(addInsurance(insurance))
+        dispatch(resetInsuranceForm())
+      })
+      .catch(error => console.log(error))
+  };
+}
+
+export const updateInsurance = (insuranceId, insurance) => {
+  return dispatch => {
+    return fetch(`${API_URL}/insurances/${insuranceId}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({insurance: insurance})
+    })
+      .then(response => response.json())
+      .then(insurance => {
+        dispatch(setSelectedInsurance(insurance))
         dispatch(resetInsuranceForm())
       })
       .catch(error => console.log(error))

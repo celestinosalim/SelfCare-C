@@ -2,83 +2,91 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
-import { updateInsuranceFormData, createInsurance} from '../../actions/insuranceActions'
+import { createInsurance, updateInsurance } from '../../actions/insuranceActions'
 
 class InsuranceForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedInsurance: this.props.insurance || {
+        id: "",
+        name: "",
+        address: "",
+        phone: "",
+        notes: ""
+      }
+    }
+  }
 
   handleChange = (e) => {
-    const { name, value } = e.target
-    const currentInsuranceFormData = Object.assign({}, this.props.insuranceFormData, {
+    const { name, value } = e.target;
+    this.setState({
       [name]: value
     })
-    this.props.updateInsuranceFormData(currentInsuranceFormData)
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createInsurance(this.props.insuranceFormData)
+    if (this.state.selectedInsurance.id === "") {
+      this.props.createInsurance(this.state)
+    } else {
+      this.props.updateInsurance(this.state.selectedInsurance.id, this.state)
+    }
   }
 
   render() {
-
-    const { name, address, phone, notes } = this.props.insuranceFormData;
-
     return (
-      <div className="formContainer">
-        <h3>Add a New Insurance</h3>
-        <Form onSubmit={this.handleSubmit}>
-          <TextFieldGroup
-            label="Name:"
-            id="formControlsName"
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={name}
-            onChange={this.handleChange}
+      <Form onSubmit={this.handleSubmit} data-id={this.state.selectedInsurance.id}>
+        <TextFieldGroup
+          label="Name:"
+          id="formControlsName"
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={this.state.selectedInsurance.name}
+          onChange={this.handleChange}
+        />
+        <TextFieldGroup
+          label="Address:"
+          id="formControlsAddress"
+          type="text"
+          name="address"
+          placeholder="Address"
+          value={this.state.selectedInsurance.address}
+          onChange={this.handleChange}
+         />
+        <TextFieldGroup
+          label="Phone:"
+          id="formControlsPhone"
+          type="text"
+          name="phone"
+          placeholder="phone"
+          value={this.state.selectedInsurance.phone}
+          onChange={this.handleChange}
+         />
+         <TextFieldGroup
+           label="Notes:"
+           id="formControlsNotes"
+           type="text"
+           name="notes"
+           placeholder="notes"
+           value={this.state.selectedInsurance.notes}
+           onChange={this.handleChange}
           />
-          <TextFieldGroup
-            label="Address:"
-            id="formControlsAddress"
-            type="text"
-            name="address"
-            placeholder="Address"
-            value={address}
-            onChange={this.handleChange}
-           />
-          <TextFieldGroup
-            label="Phone:"
-            id="formControlsPhone"
-            type="text"
-            name="phone"
-            placeholder="phone"
-            value={phone}
-            onChange={this.handleChange}
-           />
-           <TextFieldGroup
-             label="Notes:"
-             id="formControlsNotes"
-             type="text"
-             name="notes"
-             placeholder="notes"
-             value={notes}
-             onChange={this.handleChange}
-            />
-         <div className="submissionFields">
-           <Button type="submit" value="Add Insurance">Add Insurance</Button>
-         </div>
-        </Form>
-      </div>
+        <br />
+         <Button bsStyle="success" type="submit" value="Add Insurance">Add Insurance</Button>
+      </Form>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    insuranceFormData: state.insuranceFormData
-  }
+  // return {
+  //   insuranceFormData: state.insuranceFormData
+  // }
 }
 
 export default connect(mapStateToProps, {
-  updateInsuranceFormData,
-  createInsurance
+  createInsurance,
+  updateInsurance
 })(InsuranceForm);

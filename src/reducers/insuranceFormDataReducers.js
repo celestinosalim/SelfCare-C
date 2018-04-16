@@ -1,6 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
+  id: "",
   name: "",
   address: "",
   phone: "",
@@ -9,8 +10,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.UPDATE_INSURANCE:
-      return action.insuranceFormData;
 
     case types.RESET_FORM:
       return initialState;
