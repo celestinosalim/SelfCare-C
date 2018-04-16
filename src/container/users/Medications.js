@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteMedication } from '../../actions/medicationActions';
+import { deleteMedication, enterMedicationFormData } from '../../actions/medicationActions';
 import MedicationForm from '../../container/forms/MedicationForm'
 
 class Medications extends Component {
@@ -11,6 +11,8 @@ class Medications extends Component {
     this.state = {
       toCreate: false,
       isEditing: false,
+      editing: null,
+      medication: this.props.medication,
     }
     this.toggleCreate = this.toggleCreate.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
@@ -18,36 +20,40 @@ class Medications extends Component {
 
   toggleCreate(){
     this.setState({
-      toCreate: !this.state.toCreate
+      toCreate: !this.state.toCreate,
     })
   }
 
-  toggleEdit(){
+  toggleEdit = (medication) => {
+    debugger
     this.setState({
-      isEditing: !this.state.isEditing
+      isEditing: !this.state.isEditing,
+      editing: medication.id,
+      medication: medication,
+
     })
   }
 
-  handleDelete = (id) => {
-    this.props.deleteMedication(id);
+  handleDelete = (medication) => {
+    this.props.deleteMedication(medication.id);
   }
 
   render(){
-
     const emptyMessage = (
       <tr>
-        <td colSpan="6">You have no medications listed</td>
+        <td colSpan="7">You have no medications listed</td>
       </tr>
     )
 
-    const renderMeds = this.props.medications.map(medication =>
+    const medicationList = this.props.medications.map(medication =>
       <tr className='AttrInfo' key={medication.id}>
         <td>{medication.name}</td>
         <td>{medication.dose}</td>
         <td>{medication.first_dose}</td>
         <td>{medication.prescribed}</td>
         <td>{medication.notes}</td>
-        <td><Button bsStyle="link" onClick={this.toggleEdit}>Edit</Button> | <Button bsStyle="link" onClick={() => this.handleDelete(medication.id)}>Delete</Button></td>
+        <td><Button bsStyle="link" onClick={() => this.toggleEdit(medication)}>Edit</Button></td>
+        <td><Button bsStyle="link" onClick={() => this.handleDelete(medication)}>Delete</Button></td>
       </tr>
     )
 
@@ -62,20 +68,20 @@ class Medications extends Component {
                 <th>Date of First Dose</th>
                 <th>Prescribed By</th>
                 <th>Notes</th>
-                <th>Edit / Delete</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              {renderMeds.length === 0 ? emptyMessage : renderMeds}
+              {medicationList.length === 0 ? emptyMessage : medicationList}
             </tbody>
           </Table>
         </div>
 
         {this.state.isEditing ?
           <div className="AttrForm">
-            <h3>Edit Medication</h3>
-            <p>Medication Form with passed state goes here</p>
-            // <MedicationForm />
+            <h3>Edit {this.state.medication.name}</h3>
+            <MedicationForm medication={this.state.medication}/>
             <Button bsStyle="link" onClick={this.toggleEdit}>Cancel</Button>
           </div>
           :
@@ -98,7 +104,7 @@ class Medications extends Component {
   }
 }
 
-const mapStatesToProps = (state) => {
+const mapStateToProps = (state) => {
   return ({
     medication: state.medication
   });
@@ -106,8 +112,9 @@ const mapStatesToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
+    enterMedicationFormData: enterMedicationFormData,
     deleteMedication: deleteMedication
   }, dispatch);
 };
 
-export default connect(mapStatesToProps, mapDispatchToProps)(Medications);
+export default connect(mapStateToProps, mapDispatchToProps)(Medications);
