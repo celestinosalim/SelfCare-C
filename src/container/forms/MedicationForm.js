@@ -2,42 +2,43 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
-import { enterMedicationFormData, createMedication } from '../../actions/medicationActions'
-// , updateMedication
+import { createMedication, updateMedication } from '../../actions/medicationActions'
+
 class MedicationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedMedication: this.props.medication || {
-        name: ""
+        id: "",
+        name: "",
+        dose: "",
+        first_dose: "",
+        prescribed: "",
+        notes: ""
       }
     }
   }
 
   handleChange = (e) => {
-    const { name, value } = e.target
-    const currentMedicationFormData = Object.assign({}, this.props.medicationFormData, {
+    const { name, value } = e.target;
+    this.setState({
       [name]: value
     })
-    this.props.enterMedicationFormData(currentMedicationFormData)
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // this.props.createMedication(this.props.medicationFormData)
-    // if (this.props.medication.id === "") {
-    //   this.props.createMedication(this.props.medicationFormData)
-    // } else {
-    //   console.log(this.props.medication)
-    //   this.props.updateMedication(this.state)
-    // }
+    if (this.state.selectedMedication.id === "") {
+      this.props.createMedication(this.state)
+    } else {
+      this.props.updateMedication(this.state.selectedMedication.id, this.state)
+    }
   }
 
   render() {
-    const { id, name, dose, first_dose, prescribed, notes } = this.props.medicationFormData;
 
     return (
-        <Form onSubmit={this.handleSubmit} data-id={id}>
+        <Form onSubmit={this.handleSubmit} data-id={this.state.selectedMedication.id}>
           <TextFieldGroup
             label="Name:"
             id="formControlsName"
@@ -53,7 +54,7 @@ class MedicationForm extends Component {
             type="text"
             name="dose"
             placeholder="Dose"
-            value={dose}
+            value={this.state.selectedMedication.dose}
             onChange={this.handleChange}
            />
           <TextFieldGroup
@@ -62,7 +63,7 @@ class MedicationForm extends Component {
             type="text"
             name="first_dose"
             placeholder="First Dose"
-            value={first_dose}
+            value={this.state.selectedMedication.first_dose}
             onChange={this.handleChange}
            />
           <TextFieldGroup
@@ -71,7 +72,7 @@ class MedicationForm extends Component {
             type="text"
             name="prescribed"
             placeholder="prescriber"
-            value={prescribed}
+            value={this.state.selectedMedication.prescribed}
             onChange={this.handleChange}
            />
            <TextFieldGroup
@@ -80,7 +81,7 @@ class MedicationForm extends Component {
              type="text"
              name="notes"
              placeholder="notes"
-             value={notes}
+             value={this.state.selectedMedication.notes}
              onChange={this.handleChange}
             />
          <br />
@@ -91,13 +92,12 @@ class MedicationForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    medicationFormData: state.medicationFormData
-  }
+  // return {
+  //   medicationFormData: state.medicationFormData
+  // }
 }
 
 export default connect(mapStateToProps, {
-  enterMedicationFormData,
   createMedication,
-  // updateMedication
+  updateMedication
 })(MedicationForm);
