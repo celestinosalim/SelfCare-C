@@ -24,10 +24,11 @@ const destroyMedication = medication => {
 }
 
 // Action Creators - FORM
-export const updateMedicationFormData = medicationFormData => {
+
+const setSelectedMedication = medication => {
   return {
     type: types.UPDATE_MEDICATION,
-    medicationFormData
+    medication
   }
 }
 
@@ -61,6 +62,24 @@ export const createMedication = medication => {
       .then(response => response.json())
       .then(medication => {
         dispatch(addMedication(medication))
+        dispatch(resetMedicationForm())
+      })
+      .catch(error => console.log(error))
+  };
+}
+
+export const updateMedication = (medicationId, medication) => {
+  return dispatch => {
+    return fetch(`${API_URL}/medications/${medicationId}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({medication: medication})
+    })
+      .then(response => response.json())
+      .then(medication => {
+        dispatch(setSelectedMedication(medication))
         dispatch(resetMedicationForm())
       })
       .catch(error => console.log(error))
