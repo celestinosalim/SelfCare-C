@@ -7,25 +7,12 @@ import { enterMedicationFormData, createMedication } from '../../actions/medicat
 class MedicationForm extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillReceiveProps(nextProps){
-    debugger;
-    const { id, name, dose, first_dose, prescribed, notes } = nextProps.medication;
-    if (this.props.id !== nextProps.id) {
-      this.setState({
-        medication: nextProps.medication
-      })
+    this.state = {
+      selectedMedication: this.props.medication || {
+        name: ""
+      }
     }
   }
-
-
-  // handleChange = (e) => {
-  //   const { name, value } = e.target
-  //   this.setState({
-  //     [name]: value
-  //   })
-  // }
 
   handleChange = (e) => {
     const { name, value } = e.target
@@ -57,7 +44,7 @@ class MedicationForm extends Component {
             type="text"
             name="name"
             placeholder="Name"
-            value={name}
+            value={this.state.selectedMedication.name}
             onChange={this.handleChange}
           />
           <TextFieldGroup
@@ -105,7 +92,6 @@ class MedicationForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    medication: state.medication,
     medicationFormData: state.medicationFormData
   }
 }
