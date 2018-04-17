@@ -24,10 +24,10 @@ const destroyProvider = provider => {
 }
 
 // Action Creators - FORM
-export const updateProviderFormData = providerFormData => {
+export const setSelectedProvider = provider => {
   return {
     type: types.UPDATE_PROVIDER,
-    providerFormData
+    provider
   }
 }
 
@@ -61,6 +61,24 @@ export const createProvider = provider => {
       .then(response => response.json())
       .then(provider => {
         dispatch(addProvider(provider))
+        dispatch(resetProviderForm())
+      })
+      .catch(error => console.log(error))
+  };
+}
+
+export const updateProvider = (providerId, provider) => {
+  return dispatch => {
+    return fetch(`${API_URL}/providers/${providerId}`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({provider: provider})
+    })
+      .then(response => response.json())
+      .then(provider => {
+        dispatch(setSelectedProvider(provider))
         dispatch(resetProviderForm())
       })
       .catch(error => console.log(error))

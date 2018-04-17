@@ -1,7 +1,5 @@
 import * as types from '../actions/actionTypes';
 
-let id= 0;
-
 export default (state = [], action) => {
   switch (action.type) {
     case types.REQUEST_PROVIDERS:
@@ -12,9 +10,13 @@ export default (state = [], action) => {
         ...state,
         action.provider
       ]
-      // id++;
-      // const provider = Object.assign({}, action.provider, { id: id });
-      // return state.concat(provider);
+
+    case types.UPDATE_PROVIDER:
+      // const index = state.findIndex(provider => provider.id === action.provider.id)
+      return [
+        ...state.providers,
+        action.provider
+      ]
 
     case types.DELETE_PROVIDER:
       const providers = state.filter(provider => provider.id !== action.id);

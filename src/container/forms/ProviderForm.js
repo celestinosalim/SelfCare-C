@@ -2,34 +2,45 @@ import React, { Component } from 'react';
 import { Form, Button, FormGroup, Radio } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
-import { updateProviderFormData, createProvider } from '../../actions/providerActions'
+import { createProvider, updateProvider } from '../../actions/providerActions'
 import Departments from '../../components/users/Departments'
 
 class ProvidersForm extends Component {
-
-  handleChange = (e) => {
-    const { name, value } = e.target
-    const currentProviderFormData = Object.assign({}, this.props.providerFormData, {
-      [name]: value
-    })
-    this.props.updateProviderFormData(currentProviderFormData)
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedProvider: this.props.provider || {
+        id: "",
+        name: "",
+        address: "",
+        phone: "",
+        first_visit: "",
+        department: "",
+        notes: ""
+      }
+    }
   }
 
-  handleCheck = (e) => {
-
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createProvider(this.props.providerFormData)
+    if (this.state.selectedProvider.id === "") {
+      this.props.createProvider(this.state)
+    } else {
+      this.props.updateProvider(this.state.selectedProvider.id, this.state)
+    }
   }
 
   render() {
-    const { name, address, phone, first_visit, notes } = this.props.providerFormData;
 
     return (
       <div className="formContainer">
-        <h3>Add a Provider</h3>
         <Form onSubmit={this.handleSubmit}>
           <TextFieldGroup
             label="Name:"
@@ -37,7 +48,7 @@ class ProvidersForm extends Component {
             type="text"
             name="name"
             placeholder="name"
-            value={name}
+            value={this.state.selectedProvider.name}
             onChange={this.handleChange}
           />
           <TextFieldGroup
@@ -46,7 +57,7 @@ class ProvidersForm extends Component {
             type="text"
             name="address"
             placeholder="address"
-            value={address}
+            value={this.state.selectedProvider.address}
             onChange={this.handleChange}
           />
           <TextFieldGroup
@@ -55,7 +66,7 @@ class ProvidersForm extends Component {
             type="text"
             name="phone"
             placeholder="phone"
-            value={phone}
+            value={this.state.selectedProvider.phone}
             onChange={this.handleChange}
           />
           <TextFieldGroup
@@ -64,7 +75,7 @@ class ProvidersForm extends Component {
             type="text"
             name="first_visit"
             placeholder="first_visit"
-            value={first_visit}
+            value={this.state.selectedProvider.first_visit}
             onChange={this.handleChange}
            />
           <TextFieldGroup
@@ -73,11 +84,11 @@ class ProvidersForm extends Component {
              type="text"
              name="notes"
              placeholder="notes"
-             value={notes}
+             value={this.state.selectedProvider.notes}
              onChange={this.handleChange}
           />
-
-         <Button type="submit" value="Add Provider">Add Provider</Button>
+         <br />
+         <Button bsStyle="success" type="submit" value="Add Provider">Add Provider</Button>
         </Form>
       </div>
     )
@@ -85,13 +96,13 @@ class ProvidersForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    providerFormData: state.providerFormData
-  }
+  // return {
+  //
+  // }
 }
 
 export default connect(mapStateToProps, {
-  updateProviderFormData,
+  updateProvider,
   createProvider
 })(ProvidersForm);
 
