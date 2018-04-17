@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { deleteMedication } from '../../actions/medicationActions';
 
 class Medications extends Component {
 
@@ -20,8 +17,8 @@ class Medications extends Component {
         <td>{medication.first_dose}</td>
         <td>{medication.prescribed}</td>
         <td>{medication.notes}</td>
-        <td><Button bsStyle="link" onClick={() => this.props.editMed(this, medication)}>Edit</Button></td>
-        <td><Button bsStyle="link" onClick={() => {this.props.deleteMed(medication)}}>Delete</Button></td>
+        <td><Button bsStyle="link" onClick={() => this.props.editMed(medication)}>Edit</Button></td>
+        <td><Button bsStyle="link" onClick={() => {this.props.deleteMed(medication.id)}}>Delete</Button></td>
       </tr>
     )
 
@@ -33,21 +30,7 @@ class Medications extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    medication: state.medication
-  });
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    deleteMedication: deleteMedication
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Medications);
-
-
+export default Medications;
 
 
 

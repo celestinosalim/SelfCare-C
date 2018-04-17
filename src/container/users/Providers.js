@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { deleteProvider } from '../../actions/providerActions';
 
 class Providers extends Component{
 
@@ -24,7 +21,7 @@ class Providers extends Component{
         <td>{provider.first_visit}</td>
         <td>{provider.notes}</td>
         <td><Button bsStyle="link" onClick={() => this.props.editProv(provider)}>Edit</Button></td>
-        <td><Button bsStyle="link" onClick={() => this.props.deletePro(provider)}>Delete</Button></td>
+        <td><Button bsStyle="link" onClick={() => this.props.deleteProv(provider.id)}>Delete</Button></td>
       </tr>
     )
 
@@ -36,16 +33,4 @@ class Providers extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    provider: state.provider
-  });
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    deleteProvider: deleteProvider
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Providers);
+export default Providers;

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { getMedications } from '../../actions/medicationActions';
-import { getInsurances } from '../../actions/insuranceActions';
-import { getProviders } from '../../actions/providerActions';
+import { bindActionCreators } from 'redux';
+import { getMedications, deleteMedication } from '../../actions/medicationActions';
+import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
+import { getProviders, deleteProvider } from '../../actions/providerActions';
 
 import UserDetails from './UserDetails'
 import UserMeds from './UserMeds'
@@ -20,27 +21,32 @@ class UserProfile extends Component {
       insurance: this.props.insurance,
       provider: this.props.provider,
     }
-    this.toggleCreate = this.toggleCreate.bind(this)
-    this.toggleEdit = this.toggleEdit.bind(this)
   }
 
-  toggleCreate(){
+  toggleCreate = () => {
     this.setState({
       toCreate: !this.state.toCreate,
     })
   }
 
-  toggleEdit = (medication, insurance, provider) => {
+  toggleEdit = (medication) => {
+    console.log("hi")
     this.setState({
       isEditing: !this.state.isEditing,
       medication: medication,
-      insurance: insurance,
-      provider: provider,
     })
   }
 
-  handleDelete = (medication, insurance, provider) => {
-    this.props.deleteMedication(medication.id);
+  handleDeleteMed = (medication) => {
+    this.props.deleteMedication(medication)
+  }
+
+  handleDeleteIns = (insurance) => {
+    this.props.deleteInsurance(insurance)
+  }
+
+  handleDeleteProv = (provider) => {
+    this.props.deleteProvider(provider)
   }
 
   componentDidMount() {
@@ -63,16 +69,20 @@ class UserProfile extends Component {
           <Col md={8}>
             <UserDetails />
             <UserMeds
-              medications={this.props.medications} addMedication={this.toggleCreate} editMedication={this.toggleEdit}
-              deleteMedication={this.handleDelete}/>
+              medications={this.props.medications}
+              addMed={this.toggleCreate}
+              editMed={this.toggleEdit}
+              deleteMed={this.handleDeleteMed}/>
             <UserInsurance
               insurances={this.props.insurances}
-              addInsurance={this.toggleCreate} editInsurance={this.toggleEdit}
-              deleteInsurance={this.handleDelete}/>
+              addIns={this.toggleCreate}
+              editIns={this.toggleEdit}
+              deleteIns={this.handleDeleteIns}/>
             <UserProviders
               providers={this.props.providers}
-              addProvider={this.toggleCreate} editProvider={this.toggleEdit}
-              deleteProvider={this.handleDelete}/>
+              addProv={this.toggleCreate}
+              editProv={this.toggleEdit}
+              deleteProv={this.handleDeleteProv}/>
           </Col>
         </Grid>
       </div>
@@ -89,4 +99,4 @@ const mapStatesToProps = (state) => {
   });
 };
 
-export default connect(mapStatesToProps, { getMedications, getInsurances, getProviders })(UserProfile);
+export default connect(mapStatesToProps, { getMedications, getInsurances, getProviders, deleteMedication, deleteInsurance, deleteProvider })(UserProfile);

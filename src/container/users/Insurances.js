@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
 
 class Insurances extends Component {
 
@@ -20,7 +17,7 @@ class Insurances extends Component {
           <td>{insurance.phone}</td>
           <td>{insurance.notes}</td>
           <td><Button bsStyle="link" onClick={() => this.props.editIns(insurance)}>Edit</Button></td>
-          <td><Button bsStyle="link" onClick={() => this.props.deleteIns(insurance)}>Delete</Button></td>
+          <td><Button bsStyle="link" onClick={() => this.props.deleteIns(insurance.id)}>Delete</Button></td>
         </tr>
     )
 
@@ -32,16 +29,4 @@ class Insurances extends Component {
   }
 };
 
-const mapStateToProps = (state) => {
-  return ({
-    insurance: state.insurance
-  });
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    deleteInsurance: deleteInsurance
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Insurances);
+export default Insurances;
