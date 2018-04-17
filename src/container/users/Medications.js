@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteMedication } from '../../actions/medicationActions';
 
 class Medications extends Component {
-
-
-
-
 
   render(){
     const emptyMessage = (
@@ -24,8 +20,8 @@ class Medications extends Component {
         <td>{medication.first_dose}</td>
         <td>{medication.prescribed}</td>
         <td>{medication.notes}</td>
-        <td><Button bsStyle="link" onClick={() => this.props.editMedication(medication)}>Edit</Button></td>
-        <td><Button bsStyle="link" onClick={() => this.props.deleteMedication(medication)}>Delete</Button></td>
+        <td><Button bsStyle="link" onClick={() => this.props.editMed(this, medication)}>Edit</Button></td>
+        <td><Button bsStyle="link" onClick={() => {this.props.deleteMed(medication)}}>Delete</Button></td>
       </tr>
     )
 

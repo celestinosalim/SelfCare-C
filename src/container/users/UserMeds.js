@@ -28,11 +28,29 @@ class UserMeds extends Component {
               </thead>
               <Medications
                 medications={this.props.medications}
-                editMedication={this.toggleEdit} deleteMedication={this.handleDelete}/>
+                editMed={this.props.editMed} deleteMed={this.props.deleteMed}/>
             </Table>
           </div>
 
+          {this.props.editMed ?
+            <div className="AttrForm">
+              <h3>Edit "this.props.medication.name"</h3>
+              <MedicationForm medication="this.state.medication"/>
+              <Button bsStyle="link" onClick={this.props.editMed}>Cancel</Button>
+            </div>
+            :
+            <div className="AttrNew">
+              <Button bsStyle="primary" onClick={this.props.addMed}>Add New Medication</Button>
+            </div>
+          }
 
+          {this.props.addMed &&
+            <div className="AttrForm">
+              <h3>Add New Medication</h3>
+              <MedicationForm />
+              <Button bsStyle="link" onClick={this.props.addMed}>Cancel</Button>
+            </div>
+          }
 
           <br />
         </div>
@@ -49,25 +67,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(UserMeds);
 
-// {this.props.editMedication ?
-//   <div className="AttrForm">
-//     <h3>Edit {this.props.medication.name}</h3>
-//     <MedicationForm medication={this.state.medication}/>
-//     <Button bsStyle="link" onClick={this.props.editMedication}>Cancel</Button>
-//   </div>
-//   :
-//   <div className="AttrNew">
-//     <Button bsStyle="primary" onClick={this.toggleCreate}>Add New Medication</Button>
-//   </div>
-// }
-//
-// {this.props.addMedication &&
-//   <div className="AttrForm">
-//     <h3>Add New Medication</h3>
-//     <MedicationForm />
-//     <Button bsStyle="link" onClick={this.props.addMedication}>Cancel</Button>
-//   </div>
-// }
+
 
 
 
