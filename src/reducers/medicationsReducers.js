@@ -12,10 +12,9 @@ export default (state = [], action) => {
       ]
 
     case types.UPDATE_MEDICATION:
-      // const index = state.findIndex(medication => medication.id === action.medication.id)
+      const index = state.findIndex(medication => medication.id === action.medication.id)
       return [
-        ...state.medications,
-        action.medication
+        ...state.slice(0, index), action.medication, ...state.slice(index + 1)
       ]
 
     case types.DELETE_MEDICATION:

@@ -12,10 +12,9 @@ export default (state = [], action) => {
       ]
 
     case types.UPDATE_PROVIDER:
-      // const index = state.findIndex(provider => provider.id === action.provider.id)
+      const index = state.findIndex(provider => provider.id === action.provider.id)
       return [
-        ...state.providers,
-        action.provider
+        ...state.slice(0, index), action.provider, ...state.slice(index + 1)
       ]
 
     case types.DELETE_PROVIDER:

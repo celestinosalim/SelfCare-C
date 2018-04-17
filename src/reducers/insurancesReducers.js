@@ -12,10 +12,9 @@ export default (state = [], action) => {
       ]
 
     case types.UPDATE_INSURANCE:
-      // const index = state.findIndex(insurance => insurance.id === action.insurance.id)
+      const index = state.findIndex(insurance => insurance.id === action.insurance.id)
       return [
-        ...state.insurances,
-        action.insurance
+        ...state.slice(0, index), action.insurance, ...state.slice(index + 1)
       ]
 
     case types.DELETE_INSURANCE:
