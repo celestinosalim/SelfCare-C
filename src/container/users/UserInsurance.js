@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { getInsurances } from '../../actions/insuranceActions';
-import Insurances from '../../components/users/Insurances';
+import Insurances from './Insurances';
 import InsuranceForm from '../../container/forms/InsuranceForm';
 
 class UserInsurance extends Component {
