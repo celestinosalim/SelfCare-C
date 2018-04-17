@@ -96,9 +96,9 @@ class ProvidersForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // return {
-  //
-  // }
+  return {
+    providerFormData: state.providerFormData
+  }
 }
 
 export default connect(mapStateToProps, {
