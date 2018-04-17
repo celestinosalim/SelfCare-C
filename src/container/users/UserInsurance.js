@@ -31,9 +31,27 @@ class UserInsurance extends Component {
             </Table>
           </div>
 
+          {this.props.editIns ?
+            <div className="AttrForm">
+              <h3>Edit "this.state.insurance.name"</h3>
+              <InsuranceForm insurance="this.state.insurance"/>
+              <Button bsStyle="link" onClick={this.props.editIns}>Cancel</Button>
+            </div>
+            :
+            <div className="AttrNew">
+              <Button bsStyle="primary" onClick={this.props.addIns}>Add New Insurance</Button>
+            </div>
+          }
 
+          {this.props.addMed &&
+            <div className="AttrForm">
+              <h3>Add New Insurance</h3>
+              <InsuranceForm />
+              <Button bsStyle="link" onClick={this.props.addIns}>Cancel</Button>
+            </div>
+          }
 
-            <br />
+          <br />
         </div>
       </div>
     )
@@ -41,28 +59,6 @@ class UserInsurance extends Component {
 };
 
 export default UserInsurance;
-
-
-
-// {this.props.editIns ?
-//   <div className="AttrForm">
-//     <h3>Edit {this.state.insurance.name}</h3>
-//     <InsuranceForm insurance={this.state.insurance}/>
-//     <Button bsStyle="link" onClick={this.props.editIns}>Cancel</Button>
-//   </div>
-//   :
-//   <div className="AttrNew">
-//     <Button bsStyle="primary" onClick={this.props.addIns}>Add New Insurance</Button>
-//   </div>
-// }
-//
-// {this.props.addMed &&
-//   <div className="AttrForm">
-//     <h3>Add New Insurance</h3>
-//     <InsuranceForm />
-//     <Button bsStyle="link" onClick={this.props.addIns}>Cancel</Button>
-//   </div>
-// }
 
 
 //
