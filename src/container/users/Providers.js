@@ -83,7 +83,7 @@ class Providers extends Component{
         {this.state.isEditing ?
           <div className="AttrForm">
             <h3>Edit {this.state.provider.name}</h3>
-            <ProviderForm medication={this.state.provider}/>
+            <ProviderForm provider={this.state.provider}/>
             <Button bsStyle="link" onClick={this.toggleEdit}>Cancel</Button>
           </div>
           :

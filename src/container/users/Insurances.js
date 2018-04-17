@@ -76,7 +76,7 @@ class Insurances extends Component {
           {this.state.isEditing ?
             <div className="AttrForm">
               <h3>Edit {this.state.insurance.name}</h3>
-              <InsuranceForm medication={this.state.insurance}/>
+              <InsuranceForm insurance={this.state.insurance}/>
               <Button bsStyle="link" onClick={this.toggleEdit}>Cancel</Button>
             </div>
             :
