@@ -8,14 +8,18 @@ class InsuranceForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedInsurance: this.props.insurance || {
-        id: "",
-        name: "",
-        address: "",
-        phone: "",
-        notes: ""
-      }
+      id: "",
+      name: "",
+      address: "",
+      phone: "",
+      notes: ""
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      ...this.props.insurance
+    })
   }
 
   handleChange = (e) => {
@@ -27,23 +31,23 @@ class InsuranceForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    if (this.state.selectedInsurance.id === "") {
+    if (this.state.id === "") {
       this.props.createInsurance(this.state)
     } else {
-      this.props.updateInsurance(this.state.selectedInsurance.id, this.state)
+      this.props.updateInsurance(this.state.id, this.state)
     }
   }
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit} data-id={this.state.selectedInsurance.id}>
+      <Form onSubmit={this.handleSubmit} data-id={this.state.id}>
         <TextFieldGroup
           label="Name:"
           id="formControlsName"
           type="text"
           name="name"
           placeholder="Name"
-          value={this.state.selectedInsurance.name}
+          value={this.state.name}
           onChange={this.handleChange}
         />
         <TextFieldGroup
@@ -52,7 +56,7 @@ class InsuranceForm extends Component {
           type="text"
           name="address"
           placeholder="Address"
-          value={this.state.selectedInsurance.address}
+          value={this.state.address}
           onChange={this.handleChange}
          />
         <TextFieldGroup
@@ -61,7 +65,7 @@ class InsuranceForm extends Component {
           type="text"
           name="phone"
           placeholder="phone"
-          value={this.state.selectedInsurance.phone}
+          value={this.state.phone}
           onChange={this.handleChange}
          />
          <TextFieldGroup
@@ -70,7 +74,7 @@ class InsuranceForm extends Component {
            type="text"
            name="notes"
            placeholder="notes"
-           value={this.state.selectedInsurance.notes}
+           value={this.state.notes}
            onChange={this.handleChange}
           />
         <br />
