@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { getMedications, deleteMedication } from '../../actions/medicationActions';
 import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
 import { getProviders, deleteProvider } from '../../actions/providerActions';
+// import { getDepartments } from '../../actions/departmentActions';
 
 import UserDetails from './UserDetails'
 import UserMeds from './UserMeds'
@@ -53,6 +54,7 @@ class UserProfile extends Component {
     this.props.getMedications()
     this.props.getInsurances()
     this.props.getProviders()
+    // this.props.getDepartments()
   }
 
   render() {
@@ -72,16 +74,22 @@ class UserProfile extends Component {
               medications={this.props.medications}
               addMed={this.toggleCreate}
               editMed={this.toggleEdit}
+              isEditing={this.state.isEditing}
+              selectedMed={this.state.medication}
               deleteMed={this.handleDeleteMed}/>
             <UserInsurance
               insurances={this.props.insurances}
               addIns={this.toggleCreate}
               editIns={this.toggleEdit}
+              isEditing={this.state.isEditing}
+              selectedIns={this.state.insurance}
               deleteIns={this.handleDeleteIns}/>
             <UserProviders
               providers={this.props.providers}
               addProv={this.toggleCreate}
               editProv={this.toggleEdit}
+              isEditing={this.state.isEditing}
+              selectedProv={this.state.provider}
               deleteProv={this.handleDeleteProv}/>
           </Col>
         </Grid>
@@ -95,7 +103,10 @@ const mapStatesToProps = (state) => {
   return ({
     medications: state.medications,
     insurances: state.insurances,
-    providers: state.providers
+    providers: state.providers,
+    medication: state.medication,
+    insurance: state.insurance,
+    provider: state.provider
   });
 };
 
