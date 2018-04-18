@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Table } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import Providers from './Providers';
 import ProviderForm from '../../container/forms/ProviderForm';
 
@@ -33,10 +32,10 @@ class UserProviders extends Component {
             </Table>
           </div>
 
-          {this.props.editProv ?
-            <div className="AttrForm">
-              <h3>Edit "this.state.provider.name"</h3>
-              <ProviderForm provider="this.state.provider"/>
+          {this.props.isEditing ?
+            <div className="ProvForm">
+              <h3>Edit {this.props.selectedProv.name}</h3>
+              <ProviderForm provider={this.props.selectedProv}/>
               <Button bsStyle="link" onClick={this.props.editProv}>Cancel</Button>
             </div>
             :
@@ -45,7 +44,7 @@ class UserProviders extends Component {
             </div>
           }
 
-          {this.props.addProv &&
+          {this.props.toCreate &&
             <div className="AttrForm">
               <h3>Add New Provider</h3>
               <ProviderForm />
@@ -60,36 +59,3 @@ class UserProviders extends Component {
 }
 
 export default UserProviders;
-
-
-
-//
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { getProviders } from '../../actions/providerActions';
-// import Providers from './Providers';
-//
-// class UserProviders extends Component {
-//   componentDidMount() {
-//     this.props.getProviders()
-//   }
-//
-//   render(){
-//     return (
-//       <div className="UserProviders">
-//         <div className="AttrTitle">
-//           <h3>Providers</h3>
-//         </div>
-//         <Providers providers={this.props.providers}/>
-//       </div>
-//     );
-//   }
-// }
-//
-// const mapStatesToProps = (state) => {
-//   return ({
-//     providers: state.providers
-//   });
-// };
-//
-// export default connect(mapStatesToProps, { getProviders })(UserProviders);

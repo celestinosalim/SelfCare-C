@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Table } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import Insurances from './Insurances';
 import InsuranceForm from '../../container/forms/InsuranceForm'
 
@@ -31,10 +30,10 @@ class UserInsurance extends Component {
             </Table>
           </div>
 
-          {this.props.editIns ?
-            <div className="AttrForm">
-              <h3>Edit "this.state.insurance.name"</h3>
-              <InsuranceForm insurance="this.state.insurance"/>
+          {this.props.isEditing ?
+            <div className="InsForm">
+              <h3>Edit {this.props.selectedIns.name}</h3>
+              <InsuranceForm insurance={this.props.selectedIns}/>
               <Button bsStyle="link" onClick={this.props.editIns}>Cancel</Button>
             </div>
             :
@@ -43,7 +42,7 @@ class UserInsurance extends Component {
             </div>
           }
 
-          {this.props.addMed &&
+          {this.props.toCreate &&
             <div className="AttrForm">
               <h3>Add New Insurance</h3>
               <InsuranceForm />
@@ -59,35 +58,3 @@ class UserInsurance extends Component {
 };
 
 export default UserInsurance;
-
-
-//
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { getInsurances } from '../../actions/insuranceActions';
-// import Insurances from './Insurances';
-//
-// class UserInsurance extends Component {
-//   componentDidMount() {
-//     this.props.getInsurances()
-//   }
-//
-//   render(){
-//     return (
-//       <div className="UserInsurances">
-//         <div className="AttrTitle">
-//           <h3>Insurance</h3>
-//         </div>
-//         <Insurances insurances={this.props.insurances}/>
-//       </div>
-//     )
-//   }
-// };
-//
-// const mapStatesToProps = (state) => {
-//   return ({
-//     insurances: state.insurances
-//   });
-// };
-//
-// export default connect(mapStatesToProps, { getInsurances })(UserInsurance);
