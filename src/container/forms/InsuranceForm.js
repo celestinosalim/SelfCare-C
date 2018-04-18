@@ -84,13 +84,7 @@ class InsuranceForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    insuranceFormData: state.insuranceFormData
-  }
-}
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   createInsurance,
   updateInsurance
 })(InsuranceForm);
