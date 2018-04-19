@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, FormGroup, Radio } from 'react-bootstrap';
+import { Form, Button, FormGroup } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
 import { createProvider, updateProvider } from '../../actions/providerActions'
@@ -14,10 +14,11 @@ class ProvidersForm extends Component {
       address: "",
       phone: "",
       first_visit: "",
-      departments: [{
-        id: "",
-        name: ""
-      }],
+      departments: [
+        {id: 1, name: "Primary"},
+        {id: 2, name: "Psychiatrist"},
+        {id: 3, name: "Therapist"}
+      ],
       notes: "",
       checked: true
     }
@@ -54,33 +55,6 @@ class ProvidersForm extends Component {
   }
 
   render() {
-
-    // const theDepts =
-    //   this.state.selectedProvider.departments.map((department, index) => <FormGroup>
-    //     <Radio
-    //       name={department.name}
-    //       value={index}
-    //       onChange={this.handleChange}
-    //       inline>
-    //       Primary
-    //     </Radio>
-    //     <Radio
-    //       name={department.name}
-    //       value={index}
-    //       onChange={this.handleChange}
-    //       inline>
-    //       Psychiatrist
-    //     </Radio>
-    //     <Radio
-    //       name={department.name}
-    //       value={index}
-    //       onChange={this.handleChange}
-    //       inline>
-    //       Therapist
-    //     </Radio>
-    //   </FormGroup>
-    //   )
-
     return (
       <div className="formContainer">
         <Form onSubmit={this.handleSubmit} data-id={this.state.id}>
@@ -131,33 +105,14 @@ class ProvidersForm extends Component {
           />
 
           <label>
-          Primary
-          <input
-            type="checkbox"
-            value="Primary"
-            name="departments"
-            checked={this.state.checked}
-            onChange={this.handledCheckboxChange}/>
+            Department/Speciality:
           </label>
-
-          <label>
-          Psychiatrist
-          <input
-            type="checkbox"
-            value="Psychiatrist"
-            name="departments"
-            defaultChecked=""/>
-          </label>
-
-          <label>
-          Therapist
-          <input
-            type="checkbox"
-            value="Therapist"
-            name="departments"
-            defaultChecked=""/>
-          </label>
-
+          <FormGroup>
+            <Departments
+              departments={this.state.departments}
+              checked={this.state.checked}
+              onChange={this.handleChange} onClick={this.handledCheckboxChange}/>
+          </FormGroup>
 
          <br />
          <Button bsStyle="success" type="submit" value="Add Provider">Add Provider</Button>
@@ -167,87 +122,7 @@ class ProvidersForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    providerFormData: state.providerFormData
-  }
-}
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   updateProvider,
   createProvider
 })(ProvidersForm);
-
-// <FormGroup>
-//   <Radio
-//     id="1"
-//     name="Primary"
-//     value="Primary"
-//     onChange={this.handleChange}
-//     inline>
-//     Primary
-//   </Radio>
-//   <Radio
-//     id="2"
-//     name="Psychiatrist"
-//     value="Psychiatrist"
-//     onChange={this.handleChange}
-//     inline>
-//     Psychiatrist
-//   </Radio>
-//   <Radio
-//     id="3"
-//     name="Therapist"
-//     value="Therapist"
-//     onChange={this.handleChange}
-//     inline>
-//     Therapist
-//   </Radio>
-// </FormGroup>
-
-
-
-// <FormGroup>
-//   <Radio
-//     name="departments[]"
-//     value={this.props.departments}
-//     inline>
-//     Primary Care
-//   </Radio>
-//   <Radio
-//     name="departments[]"
-//     value={this.props.departments}
-//     inline>
-//     Psychiatrist
-//   </Radio>
-//   <Radio
-//     name="departments[]"
-//     value={this.props.departments}
-//     inline>
-//     Therapist
-//   </Radio>
-// </FormGroup>
-
-// <FormGroup>
-//   <Radio
-//     name="departments"
-//     value={this.state.selectedProvider.departments.id}
-//     onChange={this.handleChange}
-//     inline>
-//     Primary
-//   </Radio>
-//   <Radio
-//     name="departments"
-//     value={this.state.selectedProvider.departments.id}
-//     onChange={this.handleChange}
-//     inline>
-//     Psychiatrist
-//   </Radio>
-//   <Radio
-//     name="departments"
-//     value={this.state.selectedProvider.departments.id}
-//     onChange={this.handleChange}
-//     inline>
-//     Therapist
-//   </Radio>
-// </FormGroup>
