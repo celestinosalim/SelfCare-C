@@ -43,7 +43,7 @@ class UserProviders extends Component {
             </div>
           }
 
-          {this.props.toCreate &&
+          {this.props.isAddProv &&
             <div className="AttrForm">
               <h3>Add New Provider</h3>
               <ProviderForm />

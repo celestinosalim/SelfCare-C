@@ -42,7 +42,7 @@ class UserInsurance extends Component {
             </div>
           }
 
-          {this.props.toCreate &&
+          {this.props.isAddIns &&
             <div className="AttrForm">
               <h3>Add New Insurance</h3>
               <InsuranceForm />

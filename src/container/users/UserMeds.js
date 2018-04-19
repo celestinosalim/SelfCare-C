@@ -43,7 +43,7 @@ class UserMeds extends Component {
             </div>
           }
 
-          {this.props.toCreate ?
+          {this.props.isAddMed ?
             <div className="AttrForm">
               <h3>Add New Medication</h3>
               <MedicationForm />

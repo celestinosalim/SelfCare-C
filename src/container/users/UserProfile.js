@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import { getMedications, deleteMedication } from '../../actions/medicationActions';
 import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
 import { getProviders, deleteProvider } from '../../actions/providerActions';
@@ -15,7 +14,9 @@ class UserProfile extends Component {
   constructor(props){
     super(props);
     this.state = {
-      toCreate: false,
+      isAddMed: false,
+      isAddIns: false,
+      isAddProv: false,
       isEditMed: false,
       isEditIns: false,
       isEditProv: false,
@@ -25,15 +26,23 @@ class UserProfile extends Component {
     }
   }
 
-  toggleCreate = () => {
-    console.log("whoa")
+  toggleCreateMeds = () => {
     this.setState({
-      toCreate: !this.state.toCreate,
+      isAddMed: !this.state.isAddMed,
+    })
+  }
+  toggleCreateIns = () => {
+    this.setState({
+      isAddIns: !this.state.isAddIns,
+    })
+  }
+  toggleCreateProv = () => {
+    this.setState({
+      isAddProv: !this.state.isAddProv,
     })
   }
 
   toggleEditMeds = (medication) => {
-    console.log("hi")
     this.setState({
       isEditMed: !this.state.isEditMed,
       isEditIns: this.state.isEditIns,
@@ -42,7 +51,6 @@ class UserProfile extends Component {
     })
   }
   toggleEditIns = (insurance) => {
-    console.log("bye")
     this.setState({
       isEditMed: this.state.isEditMed,
       isEditIns: !this.state.isEditIns,
@@ -52,7 +60,6 @@ class UserProfile extends Component {
   }
 
   toggleEditProv = (provider) => {
-    console.log("hehe")
     this.setState({
       isEditMed: this.state.isEditMed,
       isEditIns: this.state.isEditIns,
@@ -96,9 +103,10 @@ class UserProfile extends Component {
 
             <UserMeds
               medications={this.props.medications}
-              addMed={this.toggleCreate}
+              addMed={this.toggleCreateMeds}
               editMed={this.toggleEditMeds}
 
+              isAddMed={this.state.isAddMed}
               isEditMed={this.state.isEditMed}
               isEditIns={this.state.isEditIns}
               isEditProv={this.state.isEditProv}
@@ -108,9 +116,10 @@ class UserProfile extends Component {
 
             <UserInsurance
               insurances={this.props.insurances}
-              addIns={this.toggleCreate}
+              addIns={this.toggleCreateIns}
               editIns={this.toggleEditIns}
 
+              isAddIns={this.state.isAddIns}
               isEditMed={this.state.isEditMed}
               isEditIns={this.state.isEditIns}
               isEditProv={this.state.isEditProv}
@@ -120,9 +129,10 @@ class UserProfile extends Component {
 
             <UserProviders
               providers={this.props.providers}
-              addProv={this.toggleCreate}
+              addProv={this.toggleCreateProv}
               editProv={this.toggleEditProv}
 
+              isAddProv={this.state.isAddProv}
               isEditMed={this.state.isEditMed}
               isEditIns={this.state.isEditIns}
               isEditProv={this.state.isEditProv}
