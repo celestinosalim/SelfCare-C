@@ -15,9 +15,6 @@ class Providers extends Component{
         <td>{provider.name}</td>
         <td>{provider.address}</td>
         <td>{provider.phone}</td>
-        {provider.departments.map(department =>
-          <td key={department.id}>{department.name}</td>
-        )}
         <td>{provider.first_visit}</td>
         <td>{provider.notes}</td>
         <td><Button bsStyle="link" onClick={() => this.props.editProv(provider)}>Edit</Button></td>
@@ -34,3 +31,7 @@ class Providers extends Component{
 }
 
 export default Providers;
+
+// {provider.departments.map(department =>
+//   <td key={department.id}>{department.name}</td>
+// )}

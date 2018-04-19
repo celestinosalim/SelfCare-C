@@ -19,7 +19,6 @@ class UserProviders extends Component {
                   <th>Provider Name</th>
                   <th>Address</th>
                   <th>Phone</th>
-                  <th>Speciality</th>
                   <th>First Visit</th>
                   <th>Notes</th>
                   <th>Edit</th>

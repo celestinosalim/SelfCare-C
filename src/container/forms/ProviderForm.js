@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Button, FormGroup } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import TextFieldGroup from '../../components/common/formFields';
 import { connect } from 'react-redux';
 import { createProvider, updateProvider } from '../../actions/providerActions'
-import Departments from '../users/Departments'
+// import Departments from '../users/Departments'
 
 class ProvidersForm extends Component {
   constructor(props) {
@@ -14,11 +14,6 @@ class ProvidersForm extends Component {
       address: "",
       phone: "",
       first_visit: "",
-      departments: [
-        {id: 1, name: "Primary"},
-        {id: 2, name: "Psychiatrist"},
-        {id: 3, name: "Therapist"}
-      ],
       notes: "",
       checked: true
     }
@@ -33,15 +28,7 @@ class ProvidersForm extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
-    })
-  }
-
-  handledCheckboxChange = (e) => {
-    this.setState({
-      departments: [{
-        id: e.target.checked
-      }]
+      [name]: value,
     })
   }
 
@@ -55,6 +42,7 @@ class ProvidersForm extends Component {
   }
 
   render() {
+      console.log(this.state)
     return (
       <div className="formContainer">
         <Form onSubmit={this.handleSubmit} data-id={this.state.id}>
@@ -93,7 +81,7 @@ class ProvidersForm extends Component {
             placeholder="first_visit"
             value={this.state.first_visit}
             onChange={this.handleChange}
-           />
+          />
           <TextFieldGroup
              label="Notes:"
              id="formControlsNotes"
@@ -104,16 +92,6 @@ class ProvidersForm extends Component {
              onChange={this.handleChange}
           />
 
-          <label>
-            Department/Speciality:
-          </label>
-          <FormGroup>
-            <Departments
-              departments={this.state.departments}
-              checked={this.state.checked}
-              onChange={this.handleChange} onClick={this.handledCheckboxChange}/>
-          </FormGroup>
-
          <br />
          <Button bsStyle="success" type="submit" value="Add Provider">Add Provider</Button>
         </Form>
@@ -122,7 +100,22 @@ class ProvidersForm extends Component {
   }
 }
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return ({
+    departments: state.departments,
+  });
+}
+
+export default connect(mapStateToProps, {
   updateProvider,
   createProvider
 })(ProvidersForm);
+
+// {this.state.departments.map((dept, index) =>
+//   <Radio
+//    key={index}
+//    value={dept}
+//    name="departments"
+//    onClick={this.handleChange}
+//    inline>{dept.name}</Radio>
+// )}
