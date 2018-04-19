@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import { Radio } from 'react-bootstrap';
 
 class Departments extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: true
-    }
-  }
-
   render() {
     debugger;
     return (
@@ -28,6 +21,3 @@ class Departments extends Component {
   }
 }
 export default Departments;
-
-// <p key={index} onChange={this.handleChange}>
-// {department.name}</p>
