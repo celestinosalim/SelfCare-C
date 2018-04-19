@@ -30,7 +30,7 @@ class UserInsurance extends Component {
             </Table>
           </div>
 
-          {this.props.isEditing ?
+          {!this.props.isEditMed && this.props.isEditIns && !this.props.isEditProv  ?
             <div className="InsForm">
               <h3>Edit {this.props.selectedIns.name}</h3>
               <InsuranceForm insurance={this.props.selectedIns}/>

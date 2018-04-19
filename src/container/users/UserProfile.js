@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { getMedications, deleteMedication } from '../../actions/medicationActions';
 import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
 import { getProviders, deleteProvider } from '../../actions/providerActions';
-// import { getDepartments } from '../../actions/departmentActions';
 
 import UserDetails from './UserDetails'
 import UserMeds from './UserMeds'
@@ -17,7 +16,9 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       toCreate: false,
-      isEditing: false,
+      isEditMed: false,
+      isEditIns: false,
+      isEditProv: false,
       medication: this.props.medication,
       insurance: this.props.insurance,
       provider: this.props.provider,
@@ -25,16 +26,38 @@ class UserProfile extends Component {
   }
 
   toggleCreate = () => {
+    console.log("whoa")
     this.setState({
       toCreate: !this.state.toCreate,
     })
   }
 
-  toggleEdit = (medication) => {
+  toggleEditMeds = (medication) => {
     console.log("hi")
     this.setState({
-      isEditing: !this.state.isEditing,
-      medication: medication,
+      isEditMed: !this.state.isEditMed,
+      isEditIns: this.state.isEditIns,
+      isEditProv: this.state.isEditProv,
+      medication: medication
+    })
+  }
+  toggleEditIns = (insurance) => {
+    console.log("bye")
+    this.setState({
+      isEditMed: this.state.isEditMed,
+      isEditIns: !this.state.isEditIns,
+      isEditProv: this.state.isEditProv,
+      insurance: insurance
+    })
+  }
+
+  toggleEditProv = (provider) => {
+    console.log("hehe")
+    this.setState({
+      isEditMed: this.state.isEditMed,
+      isEditIns: this.state.isEditIns,
+      isEditProv: !this.state.isEditProv,
+      provider: provider
     })
   }
 
@@ -54,10 +77,10 @@ class UserProfile extends Component {
     this.props.getMedications()
     this.props.getInsurances()
     this.props.getProviders()
-    // this.props.getDepartments()
   }
 
   render() {
+
     return(
       <div className="bodyContainer">
         <Grid>
@@ -70,25 +93,40 @@ class UserProfile extends Component {
           </Col>
           <Col md={8}>
             <UserDetails />
+
             <UserMeds
               medications={this.props.medications}
               addMed={this.toggleCreate}
-              editMed={this.toggleEdit}
-              isEditing={this.state.isEditing}
+              editMed={this.toggleEditMeds}
+
+              isEditMed={this.state.isEditMed}
+              isEditIns={this.state.isEditIns}
+              isEditProv={this.state.isEditProv}
+
               selectedMed={this.state.medication}
               deleteMed={this.handleDeleteMed}/>
+
             <UserInsurance
               insurances={this.props.insurances}
               addIns={this.toggleCreate}
-              editIns={this.toggleEdit}
-              isEditing={this.state.isEditing}
+              editIns={this.toggleEditIns}
+
+              isEditMed={this.state.isEditMed}
+              isEditIns={this.state.isEditIns}
+              isEditProv={this.state.isEditProv}
+
               selectedIns={this.state.insurance}
               deleteIns={this.handleDeleteIns}/>
+
             <UserProviders
               providers={this.props.providers}
               addProv={this.toggleCreate}
-              editProv={this.toggleEdit}
-              isEditing={this.state.isEditing}
+              editProv={this.toggleEditProv}
+
+              isEditMed={this.state.isEditMed}
+              isEditIns={this.state.isEditIns}
+              isEditProv={this.state.isEditProv}
+
               selectedProv={this.state.provider}
               deleteProv={this.handleDeleteProv}/>
           </Col>

@@ -32,7 +32,7 @@ class UserProviders extends Component {
             </Table>
           </div>
 
-          {this.props.isEditing ?
+          {!this.props.isEditMed && !this.props.isEditIns && this.props.isEditProv ?
             <div className="ProvForm">
               <h3>Edit {this.props.selectedProv.name}</h3>
               <ProviderForm provider={this.props.selectedProv}/>
@@ -51,6 +51,7 @@ class UserProviders extends Component {
               <Button bsStyle="link" onClick={this.props.addProv}>Cancel</Button>
             </div>
           }
+
           <br />
         </div>
       </div>

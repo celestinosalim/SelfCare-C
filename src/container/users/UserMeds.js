@@ -31,7 +31,7 @@ class UserMeds extends Component {
             </Table>
           </div>
 
-          {this.props.isEditing ?
+          {this.props.isEditMed && !this.props.isEditIns && !this.props.isEditProv ?
             <div className="AttrForm">
               <h3>Edit {this.props.selectedMed.name}</h3>
               <MedicationForm medication={this.props.selectedMed}/>
