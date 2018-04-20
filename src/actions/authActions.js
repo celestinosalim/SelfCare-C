@@ -1,69 +1,28 @@
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
-// //Action Creators
-const authRequest = () => {
-  return {
-    type: AUTH_REQUEST,
-  }
-}
-
-const authError = (errors) => {
-  return {
-    type: AUTH_ERROR,
-    errors: errors
-  }
-}
-
-const authSuccess = (user, token) => {
-  return {
-    type: AUTH_SUCCESS,
-    user: user,
-    token: token
-  }
-}
-
-export function logout(){
-  localStorage.removeItem("token");
-  return {
-    type: LOGOUT
-  }
-}
-
-export const getToken = () => {
-
-}
-
-
-export const authUser = () => {
-  // if user cant be found send error
-  // if user is found let user log in
-}
-
-export const getAuthenticatedUser = () => {
-
-}
-
-
-
-
-
+//Action Creators
 
 const setUsers = users => {
-  type: types.REQUEST_USER,
-  users
+  return {
+    type: types.REQUEST_USER,
+    users
+  }
 }
 
 const addUser = users => {
-  type: types.ADD_USER,
-  users
+  return {
+    type: types.ADD_USER,
+    users
+  }
 }
 
-const deleteUser = users => {
-  type: types.DELETE_USER,
-  users
-}
-
+// const deleteUser = users => {
+//   return {
+//     type: types.DELETE_USER,
+//     users
+//   }
+// }
 
 export const getUsers = () => {
   return dispatch => {
@@ -71,7 +30,7 @@ export const getUsers = () => {
       .then(response => response.json())
       .then(users => {
         dispatch(setUsers(users))
-      }) //returns collection of medications
+      })
       .catch(error => console.log(error));
   };
 }

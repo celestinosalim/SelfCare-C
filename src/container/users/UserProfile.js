@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { getUsers } from '../../actions/authActions';
 import { getMedications, deleteMedication } from '../../actions/medicationActions';
 import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
 import { getProviders, deleteProvider } from '../../actions/providerActions';
@@ -20,6 +21,7 @@ class UserProfile extends Component {
       isEditMed: false,
       isEditIns: false,
       isEditProv: false,
+      user: this.props.user,
       medication: this.props.medication,
       insurance: this.props.insurance,
       provider: this.props.provider,
@@ -81,6 +83,7 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
+    this.props.getUsers()
     this.props.getMedications()
     this.props.getInsurances()
     this.props.getProviders()
@@ -99,7 +102,7 @@ class UserProfile extends Component {
             </div>
           </Col>
           <Col md={8}>
-            <UserDetails />
+            <h1>James Peaches</h1>
 
             <UserMeds
               medications={this.props.medications}
@@ -149,6 +152,7 @@ class UserProfile extends Component {
 
 const mapStatesToProps = (state) => {
   return ({
+    users: state.users,
     medications: state.medications,
     insurances: state.insurances,
     providers: state.providers,
@@ -158,4 +162,4 @@ const mapStatesToProps = (state) => {
   });
 };
 
-export default connect(mapStatesToProps, { getMedications, getInsurances, getProviders, deleteMedication, deleteInsurance, deleteProvider })(UserProfile);
+export default connect(mapStatesToProps, { getUsers, getMedications, getInsurances, getProviders, deleteMedication, deleteInsurance, deleteProvider })(UserProfile);
