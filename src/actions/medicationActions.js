@@ -92,10 +92,8 @@ export const deleteMedication = medicationId => {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({medication: medicationId})
+      }
     })
-      .then(response => response.json())
       .then(medication => {
         dispatch(destroyMedication(medication))
       })

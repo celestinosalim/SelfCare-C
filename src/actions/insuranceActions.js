@@ -91,10 +91,8 @@ export const deleteInsurance = insuranceId => {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({insurance: insuranceId})
+      }
     })
-      .then(response => response.json())
       .then(insurance => {
         dispatch(destroyInsurance(insurance))
       })

@@ -91,10 +91,8 @@ export const deleteProvider = providerId => {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({provider: providerId})
+      }
     })
-      .then(response => response.json())
       .then(provider => {
         dispatch(destroyProvider(provider))
       })
