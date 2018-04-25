@@ -11,7 +11,11 @@ class Medications extends Component {
     )
 
     const medicationList = this.props.medications.map(medication =>
-      <MedicationListItem key={medication.id} medication={medication} likeMed={this.props.likeMed}/>
+      <MedicationListItem
+      key={medication.id}
+      editMed={this.props.editMed}
+      deleteMed={this.props.deleteMed}
+      medication={medication}/>
     )
 
     return (
