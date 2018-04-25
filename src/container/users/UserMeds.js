@@ -23,6 +23,7 @@ class UserMeds extends Component {
                   <th>Notes</th>
                   <th>Edit</th>
                   <th>Delete</th>
+                  <th>Likes</th>
                 </tr>
               </thead>
               <Medications
