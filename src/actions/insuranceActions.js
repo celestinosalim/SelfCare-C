@@ -39,7 +39,7 @@ export const resetInsuranceForm = () => {
 
 // Async Actions
 export const getInsurances = () => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/insurances`)
       .then(response => response.json())
       .then(insurances => {
@@ -50,7 +50,7 @@ export const getInsurances = () => {
 }
 
 export const createInsurance = insurance => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/insurances`, {
       method: "POST",
       headers: {
@@ -68,7 +68,7 @@ export const createInsurance = insurance => {
 }
 
 export const updateInsurance = (insuranceId, insurance) => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/insurances/${insuranceId}`, {
       method: "PATCH",
       headers: {
@@ -86,7 +86,7 @@ export const updateInsurance = (insuranceId, insurance) => {
 }
 
 export const deleteInsurance = insuranceId => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/insurances/${insuranceId}`, {
       method: "DELETE",
       headers: {

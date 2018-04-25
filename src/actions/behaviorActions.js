@@ -17,7 +17,7 @@ const setBehaviors = behaviors => {
 // }
 
 export const getBehaviors = () => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/behaviors`)
       .then(response => response.json())
       .then(behaviors => {

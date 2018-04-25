@@ -40,7 +40,7 @@ export const resetMedicationForm = () => {
 
 // Async Actions
 export const getMedications = () => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/medications`)
       .then(response => response.json())
       .then(medications => {
@@ -51,7 +51,7 @@ export const getMedications = () => {
 }
 
 export const createMedication = medication => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/medications`, {
       method: "POST",
       headers: {
@@ -69,7 +69,7 @@ export const createMedication = medication => {
 }
 
 export const updateMedication = (medicationId, medication) => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/medications/${medicationId}`, {
       method: "PATCH",
       headers: {
@@ -87,7 +87,7 @@ export const updateMedication = (medicationId, medication) => {
 }
 
 export const deleteMedication = medicationId => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/medications/${medicationId}`, {
       method: "DELETE",
       headers: {

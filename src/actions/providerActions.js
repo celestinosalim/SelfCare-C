@@ -39,7 +39,7 @@ export const resetProviderForm = () => {
 
 // Async Actions
 export const getProviders = () => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/providers`)
       .then(response => response.json())
       .then(providers => {
@@ -50,7 +50,7 @@ export const getProviders = () => {
 }
 
 export const createProvider = provider => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/providers`, {
       method: "POST",
       headers: {
@@ -68,7 +68,7 @@ export const createProvider = provider => {
 }
 
 export const updateProvider = (providerId, provider) => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/providers/${providerId}`, {
       method: "POST",
       headers: {
@@ -86,7 +86,7 @@ export const updateProvider = (providerId, provider) => {
 }
 
 export const deleteProvider = providerId => {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${API_URL}/providers/${providerId}`, {
       method: "DELETE",
       headers: {
