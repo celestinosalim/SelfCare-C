@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 import MedicationListItem from './MedicationListItem'
 
 class Medications extends Component {
@@ -12,7 +11,7 @@ class Medications extends Component {
     )
 
     const medicationList = this.props.medications.map(medication =>
-      <MedicationListItem key={medication.id} medication={medication} />
+      <MedicationListItem key={medication.id} medication={medication} likeMed={this.props.likeMed}/>
     )
 
     return (
