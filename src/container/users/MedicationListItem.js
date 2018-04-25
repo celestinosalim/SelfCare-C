@@ -5,20 +5,21 @@ class MedicationListItem extends Component {
   constructor(props){
     super(props);
     this.state = {
-      counter: 0,
+      updatedLike: "",
     }
   }
 
-  toggleLikeMeds = () => {
+  toggleLikeMeds = (objLike) => {
+    console.log(objLike)
     this.setState({
-      counter: this.state.counter +=1
+      updatedLike: objLike += 1
     })
   }
 
   render(){
     const {medication} = this.props
     return (
-      <tr className='AttrInfo' key={medication.id}>
+      <tr className='AttrInfo'>
         <td>{medication.name}</td>
         <td>{medication.dose}</td>
         <td>{medication.first_dose}</td>
@@ -26,7 +27,7 @@ class MedicationListItem extends Component {
         <td>{medication.notes}</td>
         <td><Button bsStyle="link" onClick={() => this.props.editMed(medication)}>Edit</Button></td>
         <td><Button bsStyle="link" onClick={() => {this.props.deleteMed(medication.id)}}>Delete</Button></td>
-        <td><Button bsStyle="success" onClick={() => {this.toggleLikeMeds()}}>Like {this.state.counter}</Button></td>
+        <td><Button bsStyle="success" onClick={() => {this.toggleLikeMeds(medication)}}>Like {medication.like}</Button></td>
       </tr>
     )
   }

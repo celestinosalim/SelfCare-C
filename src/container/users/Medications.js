@@ -3,16 +3,6 @@ import { Button } from 'react-bootstrap';
 import MedicationListItem from './MedicationListItem'
 
 class Medications extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  toggleLikeMeds = () => {
-    this.setState({
-      counter: this.state.counter +=1
-    })
-    console.log("test", this.state.counter)
-  }
 
   render(){
     const emptyMessage = (
@@ -22,7 +12,7 @@ class Medications extends Component {
     )
 
     const medicationList = this.props.medications.map(medication =>
-      <MedicationListItem medication={medication} />
+      <MedicationListItem key={medication.id} medication={medication} />
     )
 
     return (
