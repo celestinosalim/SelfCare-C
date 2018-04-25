@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import MedicationListItem from './MedicationListItem'
 
 class Medications extends Component {
+  constructor(props){
+    super(props);
+  }
+
+  toggleLikeMeds = () => {
+    this.setState({
+      counter: this.state.counter +=1
+    })
+    console.log("test", this.state.counter)
+  }
 
   render(){
     const emptyMessage = (
@@ -11,15 +22,7 @@ class Medications extends Component {
     )
 
     const medicationList = this.props.medications.map(medication =>
-      <tr className='AttrInfo' key={medication.id}>
-        <td>{medication.name}</td>
-        <td>{medication.dose}</td>
-        <td>{medication.first_dose}</td>
-        <td>{medication.prescribed}</td>
-        <td>{medication.notes}</td>
-        <td><Button bsStyle="link" onClick={() => this.props.editMed(medication)}>Edit</Button></td>
-        <td><Button bsStyle="link" onClick={() => {this.props.deleteMed(medication.id)}}>Delete</Button></td>
-      </tr>
+      <MedicationListItem medication={medication} />
     )
 
     return (
