@@ -6,10 +6,12 @@ export default (state = [], action) => {
       return action.medications;
 
     case types.ADD_MEDICATION:
-      return [
-        ...state,
-        action.medication
-      ]
+      return state.concat(action.medication)
+
+      //  [
+      //   ...state,
+      //   action.medication
+      // ]
 
     case types.UPDATE_MEDICATION:
       const index = state.findIndex(medication => medication.id === action.medication.id)
