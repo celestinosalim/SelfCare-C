@@ -101,12 +101,6 @@ export const deleteMedication = medicationId => {
   };
 }
 
-const setLike = (medication) => {
-  return {
-    type: types.MAKE_LIKES,
-    medication,
-  }
-}
 export const updateLikes = (medication) => {
   return (dispatch) => {
     return fetch(`${API_URL}/medications/${medication.id}`, {
@@ -118,7 +112,7 @@ export const updateLikes = (medication) => {
     })
       .then(response => response.json())
       .then(updatedMedication => {
-        dispatch(setLike(updatedMedication))
+        dispatch(setSelectedMedication(updatedMedication))
       })
       .catch(error => console.log(error))
   };

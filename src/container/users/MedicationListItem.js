@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-
 import { connect } from 'react-redux';
 import { updateLikes } from '../../actions/medicationActions'
 
 class MedicationListItem extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      like: this.props.medication.like,
-    }
-  }
-
   handleLikeChange = (medication) => {
-    this.setState({
-      ...this.state.medication,
-      like: medication.like++
-    })
-    this.props.updateLikes(medication)    
+    const likedMedication = Object.assign({}, medication, {like: medication.like+1})
+    this.props.updateLikes(likedMedication)
   }
 
   render(){
