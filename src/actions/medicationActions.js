@@ -100,3 +100,28 @@ export const deleteMedication = medicationId => {
       .catch(error => console.log(error))
   };
 }
+
+
+
+const setLike = (medication) => {
+  return {
+    type: types.MAKE_LIKES,
+    medication,
+  }
+}
+export const updateLikes = (medicationId, medication) => {
+  return (dispatch) => {
+    return fetch(`${API_URL}/medications/${medicationId}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({medication: medication})
+    })
+      .then(response => response.json())
+      .then(medication => {
+        dispatch(setLike(medication))
+      })
+      .catch(error => console.log(error))
+  };
+}

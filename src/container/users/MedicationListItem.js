@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 
+import { connect } from 'react-redux';
+import { updateLikes } from '../../actions/medicationActions'
+
 class MedicationListItem extends Component {
+
   constructor(props){
     super(props);
     this.state = {
-      prevLike: this.props.medication.like,
-      updatedLike: "",
+      like: this.props.medication.like,
     }
   }
 
-  handleLikeChange = () => {
+  handleLikeChange = (medication) => {
     this.setState({
-      updatedLike: this.state.prevLike++
+      ...this.state.medication,
+      like: medication.like++
     })
+    this.props.updateLikes(medication.id, medication)
+    
+    console.log("hello", medication, "oldlike", this.state.like, "newlike", medication.like)
   }
 
   render(){
@@ -26,11 +33,13 @@ class MedicationListItem extends Component {
         <td>{medication.prescribed}</td>
         <td>{medication.notes}</td>
         <td><Button bsStyle="link" onClick={() => this.props.editMed(medication)}>Edit</Button></td>
-        <td><Button bsStyle="link" onClick={() => {this.props.deleteMed(medication.id)}}>Delete</Button></td>
-        <td><Button bsStyle="success" onClick={() => {this.handleLikeChange()}}>Like {this.state.updatedLike}</Button></td>
+        <td><Button bsStyle="link" onClick={() => this.props.deleteMed(medication.id)}>Delete</Button></td>
+        <td><Button bsStyle="success" onClick={() => this.handleLikeChange(medication)}>Like {medication.like}</Button></td>
       </tr>
     )
   }
 }
 
-export default MedicationListItem;
+export default connect(null, {
+  updateLikes
+})(MedicationListItem);
