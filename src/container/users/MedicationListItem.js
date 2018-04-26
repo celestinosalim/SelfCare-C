@@ -18,9 +18,7 @@ class MedicationListItem extends Component {
       ...this.state.medication,
       like: medication.like++
     })
-    this.props.updateLikes(medication.id, medication)
-    
-    console.log("hello", medication, "oldlike", this.state.like, "newlike", medication.like)
+    this.props.updateLikes(medication)    
   }
 
   render(){

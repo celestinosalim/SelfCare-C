@@ -27,14 +27,6 @@ export default (state = [], action) => {
       return state;
 
     case types.MAKE_LIKES:
-      function isMeds(medications) {
-        return medications.id === action.medication.id
-      }
-      const selectMed = state.find(isMeds)
-      const initialLikes = selectMed.like
-
-      console.log("whop", state, "theMed", selectMed, "theLike", initialLikes )
-      
       return state;
 
     default:
