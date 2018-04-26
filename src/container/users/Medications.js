@@ -9,8 +9,14 @@ class Medications extends Component {
         <td colSpan="7">You have no medications listed</td>
       </tr>
     )
+    
+    const sorted = this.props.medications.sort(function(a, b){
+      return b.like - a.like;
+    })
 
-    const medicationList = this.props.medications.map(medication =>
+    // const sorted = this.props.medications.filter(medication => medication.like > 15)
+
+    const medicationList = sorted.map(medication =>
       <MedicationListItem
       key={medication.id}
       editMed={this.props.editMed}
