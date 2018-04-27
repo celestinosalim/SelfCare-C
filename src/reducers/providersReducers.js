@@ -6,16 +6,10 @@ export default (state = [], action) => {
       return action.providers;
 
     case types.ADD_PROVIDER:
-      return [
-        ...state,
-        action.provider
-      ]
+      return state.concat(action.provider)
 
     case types.UPDATE_PROVIDER:
-      const index = state.findIndex(provider => provider.id === action.provider.id)
-      return [
-        ...state.slice(0, index), action.provider, ...state.slice(index + 1)
-      ]
+      return state.map(provider  => provider.id === action.provider.id ? action.provider : provider)
 
     case types.DELETE_PROVIDER:
       const providers = state.filter(provider => provider.id !== action.id);

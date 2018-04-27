@@ -6,17 +6,11 @@ export default (state = [], action) => {
       return action.insurances;
 
     case types.ADD_INSURANCE:
-      return [
-        ...state,
-        action.insurance
-      ]
+      return state.concat(action.insurance)
 
     case types.UPDATE_INSURANCE:
-      const index = state.findIndex(insurance => insurance.id === action.insurance.id)
-      return [
-        ...state.slice(0, index), action.insurance, ...state.slice(index + 1)
-      ]
-
+      return state.map(insurance  => insurance.id === action.insurance.id ? action.insurance : insurance)
+      
     case types.DELETE_INSURANCE:
       const insurances = state.filter(insurance => insurance.id !== action.id);
       return insurances
