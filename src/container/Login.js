@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form, Button, Col, Grid } from 'react-bootstrap';
 import TextFieldGroup from '../components/common/formFields';
 
 class Login extends Component {
@@ -26,6 +26,7 @@ class Login extends Component {
   render() {
     return (
       <div className="bodyContainer">
+      <Grid>
         <Col md={4}></Col>
         <Col md={4}>
           <div className="formContainer">
@@ -63,6 +64,7 @@ class Login extends Component {
           </div>
         </Col>
         <Col md={4}></Col>
+        </Grid>
       </div>
     )
   }
