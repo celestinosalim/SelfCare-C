@@ -1,19 +1,8 @@
-//Create User Actions
-
-
-//Login Actions
-export const AUTH_REQUEST = "AUTH_REQUEST"
-export const AUTH_ERROR = "AUTH_ERROR"
-export const AUTH_SUCCESS = "AUTH_SUCCESS"
-
-//Logout Actions
+export const AUTHENTICATION_REQUEST = "AUTHENTICATION_REQUEST"
+export const AUTHENTICATION_SUCCESS = "AUTHENTICATION_SUCCESS"
+export const AUTHENTICATION_FAILURE = "AUTHENTICATION_FAILURE"
 export const LOGOUT = "LOGOUT"
 
-
-//users
-export const REQUEST_USER = "REQUEST_USER"
-export const ADD_USER = "ADD_USER"
-export const DELETE_USER = "DELETE_USER"
 
 export const RESET_FORM = "RESET_FORM"
 
