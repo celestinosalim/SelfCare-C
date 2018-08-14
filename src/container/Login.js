@@ -32,7 +32,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="bodyContainer">
+      <div className="container">
       <Grid>
         <Col md={4}></Col>
         <Col md={4}>

@@ -33,7 +33,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="bodyContainer">
+      <div className="container">
         <Col md={4}></Col>
         <Col md={4}>
           <div className="formContainer">

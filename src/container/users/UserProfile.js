@@ -5,7 +5,6 @@ import { getUser } from '../../actions/authActions';
 import { getMedications, deleteMedication } from '../../actions/medicationActions';
 import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
 import { getProviders, deleteProvider } from '../../actions/providerActions';
-import UserDetails from './UserDetails'
 import UserMeds from './UserMeds'
 import UserInsurance from './UserInsurance'
 import UserProviders from './UserProviders'
@@ -82,7 +81,7 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    this.props.getUser()
+    // this.props.getUser()
     this.props.getMedications()
     this.props.getInsurances()
     this.props.getProviders()
@@ -91,7 +90,7 @@ class UserProfile extends Component {
   render() {
 
     return(
-      <div className="bodyContainer">
+      <div className="container">
         <Grid>
           <Col md={4}>
             <div className="ProfileImage">
@@ -101,7 +100,7 @@ class UserProfile extends Component {
             </div>
           </Col>
           <Col md={8}>
-            <h1>James Peaches</h1>
+            <h1>User Name</h1>
 
             <UserMeds
               medications={this.props.medications}

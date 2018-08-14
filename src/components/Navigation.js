@@ -12,19 +12,17 @@ class Navigation extends Component {
 
   render () {
     const logoLink = (
-      <div id="logo">
-        <div className="App-title">SelfCare</div>
-      </div>
+      <li id="logo"><Link to="/">SelfCare</Link></li>
     )
 
     const mainNav = (
       <nav>
         <ul>
-          <Link to="/"><li>{logoLink}</li></Link>
-          <Link to="/about"><li>About</li></Link>
-          <Link to="/health_resources"><li>Health Resources</li></Link>
-          <Link to="/login"><li>Log In</li></Link>
-          <Link to="/signup"><li>Sign Up</li></Link>
+          {logoLink}
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/health_resources">Health Resources</Link></li>
+          <li><Link to="/login">Log In</Link></li>
+          <li><Link to="/signup">Sign Up</Link></li>
         </ul>
       </nav>
     )
@@ -32,17 +30,17 @@ class Navigation extends Component {
     const userNav = (
       <nav>
         <ul>
-          <Link to="/"><li>{logoLink}</li></Link>
-          <Link to="/entries"><li>Entries</li></Link>
-          <Link to="/health_resources"><li>Health Resources</li></Link>
-          <Link to="/user_profile"><li>Profile</li></Link>
-          <button onClick={(e) => this.handleLogout(e)} ><li>Log Out</li></button>
+          {logoLink}
+          <li><Link to="/entries">Entries</Link></li>
+          <li><Link to="/health_resources">Health Resources</Link></li>
+          <li><Link to="/user_profile">Profile</Link></li>
+          <li onClick={(e) => this.handleLogout(e)}>Log Out</li>
         </ul>
       </nav>
     );
 
     return (
-      <div>{this.props.isAuthenticated ? userNav : mainNav}</div>
+      <header>{this.props.isAuthenticated ? userNav : mainNav}</header>
     )
   }
 }

@@ -17,31 +17,29 @@ class App extends Component {
     const {isAuthenticated} = this.props
 
     const guestViews = (
-      <div>
+      <main>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/about" component={About} />
         <Route exact path="/health_resources" component={HealthResources} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-      </div>
+      </main>
     )
 
     const userViews = (
-      <div>
+      <main>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/entries" component={UserEntries} />
         <Route exact path="/user_profile" component={UserProfile} />
         <Route exact path="/health_resources" component={HealthResources} />
-      </div>
+      </main>
     )
 
     return (
       <Router>
-        <div className="App">
+        <div className="wrapper">
           <Navigation isAuthenticated={isAuthenticated} />
-          <div id="main-div">
-            {isAuthenticated ? userViews : guestViews}
-          </div>
+          {isAuthenticated ? userViews : guestViews}
           <Footer/>
         </div>
       </Router>

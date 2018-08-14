@@ -7,10 +7,8 @@ class UserEntries extends Component {
 
   render(){
     return (
-      <div className="bodyContainer">
-        <div className="App">
-          <h1 className="App-title">Your Log</h1>
-        </div>
+      <div className="container">
+        <h1 className="page-title">Your Log</h1>
         <div className="UserEntries">
           <div className="AttrTitle">
           </div>
