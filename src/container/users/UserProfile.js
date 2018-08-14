@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { getUsers } from '../../actions/authActions';
+import { getUser } from '../../actions/authActions';
 import { getMedications, deleteMedication } from '../../actions/medicationActions';
 import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
 import { getProviders, deleteProvider } from '../../actions/providerActions';
-
 import UserDetails from './UserDetails'
 import UserMeds from './UserMeds'
 import UserInsurance from './UserInsurance'
@@ -83,7 +82,7 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    this.props.getUsers()
+    this.props.getUser()
     this.props.getMedications()
     this.props.getInsurances()
     this.props.getProviders()
@@ -162,4 +161,4 @@ const mapStatesToProps = (state) => {
   });
 };
 
-export default connect(mapStatesToProps, { getUsers, getMedications, getInsurances, getProviders, deleteMedication, deleteInsurance, deleteProvider })(UserProfile);
+export default connect(mapStatesToProps, { getUser, getMedications, getInsurances, getProviders, deleteMedication, deleteInsurance, deleteProvider })(UserProfile);
