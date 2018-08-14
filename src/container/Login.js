@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Col, Grid } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { authenticate } from '../actions/authActions';
 import TextFieldGroup from '../components/common/formFields';
 
 class Login extends Component {
@@ -8,19 +11,23 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      error: null,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    return this.setState({ [e.target.name]: e.target.value })
+  handleChange = (e) => {
+    const {name, value} = e.target;
+    this.setState({
+      [name]: value
+    });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-
+    if (this.props.authenticate(this.state)) {
+      this.props.history.push('/puzzles')
+    } else {
+      window.alert("Sorry, something went wrong. Please try logging in again.")
+    }
   }
 
   render() {
@@ -70,4 +77,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Login = withRouter(connect(null, {authenticate})(Login));

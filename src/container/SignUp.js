@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { signup } from '../actions/authActions';
 import TextFieldGroup from '../components/common/formFields';
 
 class Signup extends Component {
@@ -9,19 +12,23 @@ class Signup extends Component {
       name: "",
       email: "",
       password: "",
-      error: null,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    return this.setState({ [e.target.name]: e.target.value })
+  handleChange = (e) => {
+    const {name, value} = e.target;
+    this.setState({
+      [name]: value
+    });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-
+    if (this.props.signup(this.state)) {
+      this.props.history.push('/user_profile')
+    } else {
+      window.alert("Sorry, something went wrong. Please try signing up again.")
+    }
   }
 
   render() {
@@ -78,4 +85,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default Signup = withRouter(connect(null, {signup})(Signup));
