@@ -67,14 +67,11 @@ class Signup extends Component {
                 onChange={this.handleChange}
                />
              <div className="submissionFields">
-               <Button type="submit" value="Sign Up">Sign Up</Button>
                <Button bsStyle="link">Forgot Password?</Button>
+               <Button type="submit" value="Sign Up" bsStyle="primary">Sign Up</Button>
              </div>
              <div className="alternativeAccess">
-               <hr></hr>
-               <p>Already have an Account?</p>
-               <Button href="/login" bsStyle="primary" bsSize="large" block>Log In</Button>
-               <Button href="#" bsSize="large" block>Sign Up with FB</Button>
+               <p>Already have an Account? <a href="/login">Log In</a></p>
              </div>
             </Form>
           </div>

@@ -57,6 +57,22 @@ footer {
   text-align: left;
 }
 
+/* Form */
+.formContainer h1,
+.alternativeAccess {
+  text-align: center;
+}
+
+.formFields,
+.submissionFields,
+.alternativeAccess {
+  padding-bottom: 1em;
+}
+
+.submissionFields {
+  text-align: right;
+}
+
 /*.BehaviorPanel {
   margin: 0 3em;
 }*/
