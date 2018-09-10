@@ -1,7 +1,6 @@
+import fetch from 'isomorphic-fetch';
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
-
-//Action Creators
 
 const authRequest = () => {
   return {
@@ -24,10 +23,9 @@ const authFailure = (errors) => {
   }
 }
 
-
 export const logout = () => {
   return dispatch => {
-    localStorage.clear();
+    localStorage.removeItem();
     return dispatch({
       type: types.LOGOUT
     });
@@ -38,16 +36,18 @@ export const signup = (user) => {
   const newUser = user
   return dispatch => {
     return fetch(`${API_URL}/users`, {
+      'mode': 'no-cors',
       method: "POST",
       headers: {
         "Accept":"application/json",
-        "Content-Type": "application/json"
+        "Content-Type":"application/json"
       },
       body: JSON.stringify({user: user})
     })
       .then(response => response.json())
       .then(jresp => {
         dispatch(authenticate({
+          name: newUser.name,
           email: newUser.email,
           password: newUser.password})
         );
@@ -62,9 +62,8 @@ export const signup = (user) => {
 export const authenticate = (credentials) => {
   return dispatch => {
     dispatch(authRequest())
-
     return fetch(`${API_URL}/user_token`, {
-      method: 'post',
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
@@ -74,6 +73,7 @@ export const authenticate = (credentials) => {
       .then((response) => {
           const token = response.jwt;
           localStorage.setItem('token', token);
+          console.log(response)
           return getUser(credentials)
       })
       .then((user) => {
@@ -82,13 +82,13 @@ export const authenticate = (credentials) => {
       .catch((errors) => {
           console.log(errors);
           dispatch(authFailure(errors))
-          localStorage.clear()
+          localStorage.removeItem()
       })
   }
 }
 
 export const getUser = (credentials) => {
-  const request = new Request('http://localhost:3001/find_user', {
+  const request = new Request(`${API_URL}/find_user`, {
     method: "POST",
     headers: new Headers({
       "Content-Type": "application/json",
@@ -96,7 +96,6 @@ export const getUser = (credentials) => {
     }),
     body: JSON.stringify({user: credentials})
   })
-
   return fetch(request)
     .then(response => response.json())
     .then(userJson => {return userJson})
