@@ -24,10 +24,13 @@ class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state);
+    // this.props.signup(this.state)
     if (this.props.signup(this.state)) {
-      this.props.history.push('/user_profile')
+      // this.props.history.push('/user_profile')
+      window.alert("Thank you for signing up.")
     } else {
-      window.alert("Sorry, something went wrong. Please try signing up again.")
+      window.alert("We're having issues creating your account.")
     }
   }
 
