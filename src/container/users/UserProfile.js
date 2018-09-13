@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Image, Grid, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { getUser } from '../../actions/authActions';
 import { getMedications, deleteMedication } from '../../actions/medicationActions';
 import { getInsurances, deleteInsurance } from '../../actions/insuranceActions';
 import { getProviders, deleteProvider } from '../../actions/providerActions';
@@ -81,14 +80,13 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    // this.props.getUser()
     this.props.getMedications()
     this.props.getInsurances()
     this.props.getProviders()
   }
 
   render() {
-
+    console.log(this.props);
     return(
       <div className="container">
         <Grid>
@@ -100,9 +98,10 @@ class UserProfile extends Component {
             </div>
           </Col>
           <Col md={8}>
-            <h1>User Name</h1>
+            <h1>{this.props.user.name}</h1>
 
             <UserMeds
+              user={this.props.user}
               medications={this.props.medications}
               addMed={this.toggleCreateMeds}
               editMed={this.toggleEditMeds}
@@ -160,4 +159,4 @@ const mapStatesToProps = (state) => {
   });
 };
 
-export default connect(mapStatesToProps, { getUser, getMedications, getInsurances, getProviders, deleteMedication, deleteInsurance, deleteProvider })(UserProfile);
+export default connect(mapStatesToProps, { getMedications, getInsurances, getProviders, deleteMedication, deleteInsurance, deleteProvider })(UserProfile);

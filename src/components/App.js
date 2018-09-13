@@ -14,7 +14,7 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const {isAuthenticated} = this.props
+    const {isAuthenticated, user} = this.props
 
     const guestViews = (
       <main>
@@ -30,7 +30,7 @@ class App extends Component {
       <main>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/entries" component={UserEntries} />
-        <Route exact path="/user_profile" component={UserProfile} />
+        <Route exact path="/user_profile" render={() => <UserProfile user={user}/>} />
         <Route exact path="/health_resources" component={HealthResources} />
       </main>
     )
