@@ -1,6 +1,8 @@
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
+const providerLink = `${API_URL}/providers`
+
 // Action Creators
 const setProviders = providers => {
   return {
@@ -40,7 +42,11 @@ export const resetProviderForm = () => {
 // Async Actions
 export const getProviders = () => {
   return (dispatch) => {
-    return fetch(`${API_URL}/providers`)
+    return fetch(`${providerLink}`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+    })
       .then(response => response.json())
       .then(providers => {
         dispatch(setProviders(providers))
@@ -51,9 +57,10 @@ export const getProviders = () => {
 
 export const createProvider = provider => {
   return (dispatch) => {
-    return fetch(`${API_URL}/providers`, {
+    return fetch(`${providerLink}`, {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({provider: provider})
@@ -69,9 +76,10 @@ export const createProvider = provider => {
 
 export const updateProvider = (providerId, provider) => {
   return (dispatch) => {
-    return fetch(`${API_URL}/providers/${providerId}`, {
+    return fetch(`${providerLink}/${providerId}`, {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({provider: provider})
@@ -87,9 +95,11 @@ export const updateProvider = (providerId, provider) => {
 
 export const deleteProvider = providerId => {
   return (dispatch) => {
-    return fetch(`${API_URL}/providers/${providerId}`, {
+    return fetch(`${providerLink}/${providerId}`, {
       method: "DELETE",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+        "Accept":"application/json",
         'Content-Type': 'application/json'
       }
     })

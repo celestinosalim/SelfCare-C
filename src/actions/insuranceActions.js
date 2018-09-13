@@ -1,6 +1,8 @@
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
+const insuranceLink = `${API_URL}/insurances`
+
 // Action Creators
 const setInsurances = insurances => {
   return {
@@ -40,7 +42,11 @@ export const resetInsuranceForm = () => {
 // Async Actions
 export const getInsurances = () => {
   return (dispatch) => {
-    return fetch(`${API_URL}/insurances`)
+    return fetch(`${insuranceLink}`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+    })
       .then(response => response.json())
       .then(insurances => {
         dispatch(setInsurances(insurances))
@@ -51,9 +57,10 @@ export const getInsurances = () => {
 
 export const createInsurance = insurance => {
   return (dispatch) => {
-    return fetch(`${API_URL}/insurances`, {
+    return fetch(`${insuranceLink}`, {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({insurance: insurance})
@@ -69,9 +76,10 @@ export const createInsurance = insurance => {
 
 export const updateInsurance = (insuranceId, insurance) => {
   return (dispatch) => {
-    return fetch(`${API_URL}/insurances/${insuranceId}`, {
+    return fetch(`${insuranceLink}/${insuranceId}`, {
       method: "PATCH",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({insurance: insurance})
@@ -87,9 +95,11 @@ export const updateInsurance = (insuranceId, insurance) => {
 
 export const deleteInsurance = insuranceId => {
   return (dispatch) => {
-    return fetch(`${API_URL}/insurances/${insuranceId}`, {
+    return fetch(`${insuranceLink}/${insuranceId}`, {
       method: "DELETE",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+        "Accept":"application/json",
         'Content-Type': 'application/json'
       }
     })

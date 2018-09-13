@@ -18,7 +18,11 @@ const setBehaviors = behaviors => {
 
 export const getBehaviors = () => {
   return (dispatch) => {
-    return fetch(`${API_URL}/behaviors`)
+    return fetch(`${API_URL}/behaviors`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+    })
       .then(response => response.json())
       .then(behaviors => {
         dispatch(setBehaviors(behaviors))
@@ -26,12 +30,13 @@ export const getBehaviors = () => {
       .catch(error => console.log(error));
   };
 }
-//
+
 // export const createBehavior = behavior => {
 //   return dispatch => {
 //     return fetch(`${API_URL}/behaviors`, {
 //       method: "POST",
 //       headers: {
+//         "Authorization": `Bearer ${localStorage.token}`,
 //         'Content-Type': 'application/json'
 //       },
 //       body: JSON.stringify({behavior: behavior})
@@ -39,6 +44,7 @@ export const getBehaviors = () => {
 //       .then(response => response.json())
 //       .then(behavior => {
 //         dispatch(addBehavior(behavior))
+//         dispatch(resetBehaviorForm())
 //       })
 //       .catch(error => console.log(error))
 //   };

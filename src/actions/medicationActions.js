@@ -1,6 +1,8 @@
 import { API_URL } from './apiUrl'
 import * as types from './actionTypes'
 
+const medicationLink = `${API_URL}/medications`
+
 // Action Creators
 const setMedications = medications => {
   return {
@@ -41,7 +43,11 @@ export const resetMedicationForm = () => {
 // Async Actions
 export const getMedications = () => {
   return (dispatch) => {
-    return fetch(`${API_URL}/medications`)
+    return fetch(`${medicationLink}`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+    })
       .then(response => response.json())
       .then(medications => {
         dispatch(setMedications(medications))
@@ -52,9 +58,10 @@ export const getMedications = () => {
 
 export const createMedication = medication => {
   return (dispatch) => {
-    return fetch(`${API_URL}/medications`, {
+    return fetch(`${medicationLink}`, {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({medication: medication})
@@ -70,9 +77,10 @@ export const createMedication = medication => {
 
 export const updateMedication = (medicationId, medication) => {
   return (dispatch) => {
-    return fetch(`${API_URL}/medications/${medicationId}`, {
+    return fetch(`${medicationLink}/${medicationId}`, {
       method: "PATCH",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({medication: medication})
@@ -88,9 +96,11 @@ export const updateMedication = (medicationId, medication) => {
 
 export const deleteMedication = medicationId => {
   return (dispatch) => {
-    return fetch(`${API_URL}/medications/${medicationId}`, {
+    return fetch(`${medicationLink}/${medicationId}`, {
       method: "DELETE",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+        "Accept":"application/json",
         'Content-Type': 'application/json'
       }
     })
@@ -106,6 +116,7 @@ export const updateLikes = (medication) => {
     return fetch(`${API_URL}/medications/${medication.id}`, {
       method: "PATCH",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({medication: medication})
