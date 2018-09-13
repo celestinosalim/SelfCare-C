@@ -36,7 +36,6 @@ export const signup = (user) => {
   const newUser = user
   return dispatch => {
     return fetch(`${API_URL}/users`, {
-      // 'mode': 'no-cors',
       method: "POST",
       headers: {
         "Accept":"application/json",
@@ -53,7 +52,6 @@ export const signup = (user) => {
         );
       })
       .catch((errors) => {
-        console.log(errors)
         dispatch(authFailure(errors))
       })
   };
@@ -73,16 +71,15 @@ export const authenticate = (credentials) => {
       .then((response) => {
           const token = response.jwt;
           localStorage.setItem('token', token);
-          console.log(response)
           return getUser(credentials)
       })
       .then((user) => {
+        console.log(user)
           dispatch(authSuccess(user, localStorage.token))
       })
       .catch((errors) => {
-          console.log(errors);
           dispatch(authFailure(errors))
-          localStorage.removeItem()
+          localStorage.clear()
       })
   }
 }
