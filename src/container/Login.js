@@ -24,8 +24,8 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.props.authenticate(this.state)) {
-      // this.props.history.push('/user_profile')
-      window.alert("SUCCESS")
+      this.props.history.push('/user_profile')
+      window.alert("You're Logged In!")
     } else {
       window.alert("Sorry, something went wrong. Please try logging in again.")
     }
