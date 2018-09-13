@@ -42,60 +42,57 @@ class ProvidersForm extends Component {
   }
 
   render() {
-      console.log(this.state)
     return (
-      <div className="formContainer">
-        <Form onSubmit={this.handleSubmit} data-id={this.state.id}>
-          <TextFieldGroup
-            label="Name:"
-            id="formControlsName"
-            type="text"
-            name="name"
-            placeholder="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-          <TextFieldGroup
-            label="Address:"
-            id="formControlsAddress"
-            type="text"
-            name="address"
-            placeholder="address"
-            value={this.state.address}
-            onChange={this.handleChange}
-          />
-          <TextFieldGroup
-            label="Phone:"
-            id="formControlsPhone"
-            type="text"
-            name="phone"
-            placeholder="phone"
-            value={this.state.phone}
-            onChange={this.handleChange}
-          />
-          <TextFieldGroup
-            label="First Visit:"
-            id="formControlsFirstVisit"
-            type="text"
-            name="first_visit"
-            placeholder="first_visit"
-            value={this.state.first_visit}
-            onChange={this.handleChange}
-          />
-          <TextFieldGroup
-             label="Notes:"
-             id="formControlsNotes"
-             type="text"
-             name="notes"
-             placeholder="notes"
-             value={this.state.notes}
-             onChange={this.handleChange}
-          />
+      <Form onSubmit={this.handleSubmit} data-id={this.state.id}>
+        <TextFieldGroup
+          label="Name:"
+          id="formControlsName"
+          type="text"
+          name="name"
+          placeholder="name"
+          value={this.state.name}
+          onChange={this.handleChange}
+        />
+        <TextFieldGroup
+          label="Address:"
+          id="formControlsAddress"
+          type="text"
+          name="address"
+          placeholder="address"
+          value={this.state.address}
+          onChange={this.handleChange}
+        />
+        <TextFieldGroup
+          label="Phone:"
+          id="formControlsPhone"
+          type="text"
+          name="phone"
+          placeholder="phone"
+          value={this.state.phone}
+          onChange={this.handleChange}
+        />
+        <TextFieldGroup
+          label="First Visit:"
+          id="formControlsFirstVisit"
+          type="text"
+          name="first_visit"
+          placeholder="first_visit"
+          value={this.state.first_visit}
+          onChange={this.handleChange}
+        />
+        <TextFieldGroup
+           label="Notes:"
+           id="formControlsNotes"
+           type="text"
+           name="notes"
+           placeholder="notes"
+           value={this.state.notes}
+           onChange={this.handleChange}
+        />
 
-         <br />
-         <Button bsStyle="success" type="submit" value="Add Provider">Add Provider</Button>
-        </Form>
-      </div>
+       <br />
+       <Button bsStyle="success" type="submit" value="Add Provider">Add Provider</Button>
+      </Form>
     )
   }
 }
