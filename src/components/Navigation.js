@@ -32,7 +32,6 @@ class Navigation extends Component {
         <ul>
           {logoLink}
           <li><Link to="/entries">Entries</Link></li>
-          <li><Link to="/health_resources">Health Resources</Link></li>
           <li><Link to="/user_profile">Profile</Link></li>
           <li onClick={(e) => this.handleLogout(e)}>Log Out</li>
         </ul>
