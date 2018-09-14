@@ -4,7 +4,6 @@
   "private": true,
   "engines": {
     "npm": "6.4.0",
-    "node": "10.8.0"
   },
   "dependencies": {
     "postinstall": "^0.4.1",
