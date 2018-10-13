@@ -13,7 +13,6 @@ import Footer from './shared/Footer';
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 library.add(fab)
 
@@ -22,31 +21,31 @@ class App extends Component {
     const {isAuthenticated, user} = this.props
 
     const guestViews = (
-      <main>
+      <div className="wrapper">
+        <Navigation isAuthenticated={isAuthenticated} />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/about" component={About} />
         <Route exact path="/health_resources" component={HealthResources} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-      </main>
+        <Footer/>
+      </div>
     )
 
     const userViews = (
-      <main>
+      <div className="wrapper">
+        <Navigation isAuthenticated={isAuthenticated} />
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/health_resources" component={HealthResources} />
         <Route exact path="/entries" component={UserEntries} />
         <Route exact path="/user_profile" render={() => <UserProfile user={user}/>} />
-        <Route exact path="/health_resources" component={HealthResources} />
-      </main>
+      </div>
     )
 
     return (
       <Router>
-        <div className="wrapper">
-          <Navigation isAuthenticated={isAuthenticated} />
-          {isAuthenticated ? userViews : guestViews}
-          <Footer/>
-        </div>
+        {isAuthenticated ? userViews : guestViews}
       </Router>
     );
   }
