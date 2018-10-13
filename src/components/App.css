@@ -1,34 +1,79 @@
-body {
-  max-width: 1440px;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
 }
 
-/* body, header, footer  {
-  font-family: "Avenir", sans-serif;
+/* ==========================================================================
+   Root Styles
+   ========================================================================== */
+
+:root {
+  --gray: #8A8E80;
+  --orange: #CE795C;
+}
+
+/* @font-face {
+  font-family: "Avenir";
+  src: local('./web-fonts-with-css/css/fonts/Avenir.ttc');
 } */
 
-.wrapper {
-  margin: 0 auto;
-  border: 1px solid black;
+h1, h2, h3, h4, h5, h6, header {
+  color: var(--orange);
+  font-family: 'Convergence', sans-serif;
+  font-weight: 600;
 }
 
+body {
+  /* margin: auto; */
+  color: var(--gray);
+  line-height: 18px;
+}
+
+.wrapper {
+  /* background: #fff; */
+  /* -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
+  box-shadow: 0 0 10px rgba(0,0,0,.3); */
+  max-width: 1440px;
+  margin: 16px auto;
+  padding: 2.25%; /* 18px / 800px */
+  width: 85%;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas:
+    "hd"
+    "main"
+    "ft";
+}
+
+button {
+  background: var(--gray);
+  color: white;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Navigation Styles
+   ========================================================================== */
+
 header {
-  height: 100px;
+  margin: 0 auto;
   width: 100%;
+  position: relative;
+  grid-area: hd;
 }
 
 nav {
-  width: 100%;
+  /* width: 100%; */
   font-size: 2em;
 }
 
 nav ul {
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   list-style: none;
-  overflow: hidden;
 }
 
 nav li {
@@ -36,25 +81,61 @@ nav li {
   padding: 1em;
 }
 
-nav li a {
+nav a {
   text-decoration: none;
 }
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
 
 footer {
   right: 0;
   bottom: 0;
   left: 0;
   width: 100%;
+  display: flex;
+  grid-area: ft;
+}
+
+footer ul {
+  list-style-type: none;
+}
+
+footer li {
+  align-content: space-between;
+}
+
+.social-icons {
+  display: flex;
+}
+
+/* ==========================================================================
+   Main Styles
+   ========================================================================== */
+
+main {
+  grid-area: main;
+}
+
+
+#landing-page {
+  background-image: url("/images/scott-webb-186137-unsplash.jpg")
+}
+
+
+.hero-details {
+  margin: 0 10em;
+  width: auto;
   text-align: center;
 }
 
 .App-title {
-  font-size: 3em;
+  /* font-size: 3em; */
 }
 
 .App-intro {
-  font-size: large;
-  text-align: left;
+  /* font-size: large; */
 }
 
 /* Form */
