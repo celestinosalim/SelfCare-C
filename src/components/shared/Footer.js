@@ -6,11 +6,8 @@ export default () => {
     <footer>
       <p>© SelfCare 2018</p>
       <ul className="social-icons">
-        <li><FontAwesomeIcon icon={['fab', 'apple']} /></li>
-        <li><FontAwesomeIcon icon={['fab', 'twitter']} /></li>
-        <li><FontAwesomeIcon icon={['fab', 'instagram']} /></li>
-        {/* <li><span className="fa-stack fa-lg fa-1x"><a href=""  target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter" aria-hidden="false"></i></a></span></li>
-        <li><span className="fa-stack fa-lg fa-1x"><a href=""  target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram" aria-hidden="false"></i></a></span></li> */}
+        <li><a href=""  target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'twitter']} /></a></li>
+        <li><a href=""  target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'instagram']} /></a></li>
      </ul>
     </footer>
   );
