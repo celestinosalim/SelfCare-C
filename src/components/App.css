@@ -20,8 +20,8 @@ html {
 
 h1, h2, h3, h4, h5, h6, header {
   color: var(--orange);
-  font-family: 'Convergence', sans-serif;
-  font-weight: 600;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
 }
 
 body {
@@ -120,7 +120,10 @@ main {
 
 
 #landing-page {
-  background-image: url("/images/scott-webb-186137-unsplash.jpg")
+  background-image: url("/images/scott-webb-186137-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 
