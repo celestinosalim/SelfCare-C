@@ -34,51 +34,45 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="container">
-        <Col md={4}></Col>
-        <Col md={4}>
-          <div className="formContainer">
-            <h1>Sign Up</h1>
-            <Form onSubmit={this.handleSubmit}>
-              <TextFieldGroup
-                label="Name"
-                id="formControlsName"
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
-              <TextFieldGroup
-                label="Email"
-                id="formControlsEmail"
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.handleChange}
-               />
-              <TextFieldGroup
-                label="Password"
-                id="formControlsPassword"
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.handleChange}
-               />
-             <div className="submissionFields">
-               <Button bsStyle="link">Forgot Password?</Button>
-               <Button type="submit" value="Sign Up" bsStyle="primary">Sign Up</Button>
-             </div>
-             <div className="alternativeAccess">
-               <p>Already have an Account? <a href="/login">Log In</a></p>
-             </div>
-            </Form>
-          </div>
-        </Col>
-        <Col md={4}></Col>
-      </div>
+      <main>
+        <Form onSubmit={this.handleSubmit}>
+          <h1 className="page-title">Sign Up</h1>
+          <TextFieldGroup
+            label="Name"
+            id="formControlsName"
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <TextFieldGroup
+            label="Email"
+            id="formControlsEmail"
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.handleChange}
+           />
+          <TextFieldGroup
+            label="Password"
+            id="formControlsPassword"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={this.state.password}
+            onChange={this.handleChange}
+           />
+         <div className="submissionFields">
+           <Button bsStyle="link">Forgot Password?</Button>
+           <Button type="submit" value="Sign Up" bsStyle="primary">Sign Up</Button>
+         </div>
+         <div className="alternativeAccess">
+           <p>Already have an Account? <a href="/login">Log In</a></p>
+         </div>
+        </Form>
+      </main>
     )
   }
 }

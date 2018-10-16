@@ -33,42 +33,36 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container">
-      <Grid>
-        <Col md={4}></Col>
-        <Col md={4} className="formContainer">
-          <h1>Login</h1>
-          <Form onSubmit={this.handleSubmit}>
-            <TextFieldGroup
-              label="Email"
-              id="formControlsEmail"
-              type="text"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-            <TextFieldGroup
-              label="Password"
-              id="formControlsPassword"
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-           <div className="submissionFields">
-              <Button bsStyle="link">Forgot Password?</Button>
-              <Button type="submit" value="Login" bsStyle="primary">Log In</Button>
-           </div>
-           <div className="alternativeAccess">
-             <p>New to SelfCare? <a href="/signup">Sign Up</a></p>
-           </div>
-          </Form>
-        </Col>
-        <Col md={4}></Col>
-        </Grid>
-      </div>
+      <main>
+        <Form onSubmit={this.handleSubmit}>
+          <h1 className="page-title">Login</h1>
+          <TextFieldGroup
+            label="Email"
+            id="formControlsEmail"
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
+          <TextFieldGroup
+            label="Password"
+            id="formControlsPassword"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+         <div className="submissionFields">
+            <Button bsStyle="link">Forgot Password?</Button>
+            <Button type="submit" value="Login" bsStyle="primary">Log In</Button>
+         </div>
+         <div className="alternativeAccess">
+           <p>New to SelfCare? <a href="/signup">Sign Up</a></p>
+         </div>
+        </Form>
+      </main>
     )
   }
 }
